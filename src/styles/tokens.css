@@ -1,0 +1,220 @@
+/* Design tokens (Figma). Scale is inverse of Tailwind: 100 = darkest, 0 = #fff. */
+
+@theme {
+  /* blue (teal) — base = blue-50 */
+  --color-blue-100: #000000;
+  --color-blue-98: #000707;
+  --color-blue-96: #000f0f;
+  --color-blue-94: #001616;
+  --color-blue-92: #001e1e;
+  --color-blue-90: #002525;
+  --color-blue-80: #004a4a;
+  --color-blue-70: #007070;
+  --color-blue-60: #009595;
+  --color-blue-50: #00baba;
+  --color-blue-40: #33c8c8;
+  --color-blue-30: #66d6d6;
+  --color-blue-20: #99e3e3;
+  --color-blue-10: #ccf1f1;
+  --color-blue-8: #d6f4f4;
+  --color-blue-6: #e0f7f7;
+  --color-blue-4: #ebf9f9;
+  --color-blue-2: #f5fcfc;
+  --color-blue-0: #ffffff;
+
+  /* gray */
+  --color-gray-100: #000000;
+  --color-gray-98: #050505;
+  --color-gray-96: #0a0a0a;
+  --color-gray-94: #0f0f0f;
+  --color-gray-92: #141414;
+  --color-gray-90: #191919;
+  --color-gray-80: #333333;
+  --color-gray-70: #4c4c4c;
+  --color-gray-60: #666666;
+  --color-gray-50: #7f7f7f;
+  --color-gray-40: #999999;
+  --color-gray-30: #b3b3b3;
+  --color-gray-20: #cccccc;
+  --color-gray-10: #e6e6e6;
+  --color-gray-8: #ebebeb;
+  --color-gray-6: #f0f0f0;
+  --color-gray-4: #f5f5f5;
+  --color-gray-2: #fafafa;
+  --color-gray-0: #ffffff;
+
+  /* green */
+  --color-green-100: #000000;
+  --color-green-98: #010703;
+  --color-green-96: #020e06;
+  --color-green-94: #031609;
+  --color-green-92: #041d0c;
+  --color-green-90: #05240f;
+  --color-green-80: #09471e;
+  --color-green-70: #0e6b2c;
+  --color-green-60: #128e3b;
+  --color-green-50: #17b24a;
+  --color-green-40: #45c16e;
+  --color-green-30: #74d192;
+  --color-green-20: #a2e0b7;
+  --color-green-10: #d1f0db;
+  --color-green-8: #daf3e2;
+  --color-green-6: #e3f6e9;
+  --color-green-4: #edf9f1;
+  --color-green-2: #f6fcf8;
+  --color-green-0: #ffffff;
+
+  /* red */
+  --color-red-100: #000000;
+  --color-red-98: #090101;
+  --color-red-96: #110202;
+  --color-red-94: #1a0404;
+  --color-red-92: #220505;
+  --color-red-90: #2b0606;
+  --color-red-80: #560c0d;
+  --color-red-70: #801213;
+  --color-red-60: #ab181a;
+  --color-red-50: #d61e20;
+  --color-red-40: #de4b4d;
+  --color-red-30: #e67879;
+  --color-red-20: #efa5a6;
+  --color-red-10: #f7d2d2;
+  --color-red-8: #f9dbdb;
+  --color-red-6: #fae4e4;
+  --color-red-4: #fceded;
+  --color-red-2: #fdf6f6;
+  --color-red-0: #ffffff;
+
+  /* corner radius -> rounded-1 .. rounded-6, rounded-circular */
+  --radius-0: 0;
+  --radius-1: 2px;
+  --radius-2: 4px;
+  --radius-3: 8px;
+  --radius-4: 12px;
+  --radius-5: 16px;
+  --radius-6: 20px;
+  --radius-circular: 1000px;
+  /* radius aliases -> rounded-xs .. rounded-xxl */
+  --radius-none: var(--radius-0);
+  --radius-xs: var(--radius-1);
+  --radius-sm: var(--radius-2);
+  --radius-md: var(--radius-3);
+  --radius-lg: var(--radius-4);
+  --radius-xl: var(--radius-5);
+  --radius-xxl: var(--radius-6);
+
+  /* spacing: design space-0X == Tailwind default spacing keys (no redefine needed)
+     space-00=0  space-0,5=p-0.5(2px)  space-01=p-1(4)  space-02=p-2(8)
+     space-03=p-3(12)  space-04=p-4(16)  space-06=p-6(24)  space-08=p-8(32)
+     space-10=p-10(40) space-12=p-12(48) space-16=p-16(64) space-20=p-20(80) space-24=p-24(96) */
+
+  /* semantic (use these in components) */
+  /* primary surfaces (states) */
+  --color-primary-bg1: var(--color-blue-6);
+  --color-primary-bg1-hover: var(--color-blue-8);
+  --color-primary-bg1-focus: var(--color-blue-8);
+  --color-primary-bg1-press: var(--color-blue-10);
+
+  --color-primary-bg2: var(--color-blue-60);
+  --color-primary-bg2-hover: var(--color-blue-70);
+  --color-primary-bg2-focus: var(--color-blue-70);
+  --color-primary-bg2-press: var(--color-blue-80);
+  --color-primary-bg2-disable: var(--color-blue-20);
+
+  --color-primary-fg1: var(--color-blue-60);
+  --color-primary-fg1-hover: var(--color-blue-70);
+  --color-primary-fg1-focus: var(--color-blue-70);
+  --color-primary-fg1-press: var(--color-blue-80);
+  --color-primary-fg1-disable: var(--color-blue-20);
+
+  /* success surfaces (states) */
+  --color-success-bg1: var(--color-green-6);
+  --color-success-bg1-hover: var(--color-green-8);
+  --color-success-bg1-focus: var(--color-green-8);
+  --color-success-bg1-press: var(--color-green-10);
+
+  --color-success-bg2: var(--color-green-50);
+  --color-success-bg2-hover: var(--color-green-60);
+  --color-success-bg2-focus: var(--color-green-60);
+  --color-success-bg2-press: var(--color-green-70);
+  --color-success-bg2-disable: var(--color-green-20);
+
+  --color-success-fg1: var(--color-green-50);
+  --color-success-fg1-hover: var(--color-green-60);
+  --color-success-fg1-focus: var(--color-green-60);
+  --color-success-fg1-press: var(--color-green-70);
+
+  /* error surfaces (states) */
+  --color-error-bg1: var(--color-red-6);
+  --color-error-bg1-hover: var(--color-red-8);
+  --color-error-bg1-focus: var(--color-red-8);
+  --color-error-bg1-press: var(--color-red-10);
+
+  --color-error-bg2: var(--color-red-50);
+  --color-error-bg2-hover: var(--color-red-60);
+  --color-error-bg2-focus: var(--color-red-60);
+  --color-error-bg2-press: var(--color-red-70);
+  --color-error-bg2-disable: var(--color-red-20);
+
+  --color-error-fg1: var(--color-red-50);
+  --color-error-fg1-hover: var(--color-red-60);
+  --color-error-fg1-focus: var(--color-red-60);
+  --color-error-fg1-press: var(--color-red-70);
+  --color-error-fg1-disable: var(--color-red-20);
+
+  /* error-fg2: white across all states (text on error-bg2) */
+  --color-error-fg2: var(--color-gray-0);
+  --color-error-fg2-hover: var(--color-gray-0);
+  --color-error-fg2-focus: var(--color-gray-0);
+  --color-error-fg2-press: var(--color-gray-0);
+  --color-error-fg2-disable: var(--color-gray-0);
+
+  /* neutral surfaces (states) */
+  --color-bg1: var(--color-gray-0);
+  --color-bg1-hover: var(--color-gray-6);
+  --color-bg1-focus: var(--color-gray-6);
+  --color-bg1-press: var(--color-gray-8);
+
+  --color-bg2: var(--color-gray-6);
+  --color-bg2-hover: var(--color-gray-10);
+  --color-bg2-focus: var(--color-gray-10);
+  --color-bg2-press: var(--color-gray-20);
+  --color-bg2-disable: var(--color-gray-6);
+  --color-bg2-selected: var(--color-gray-0);
+
+  /* neutral foreground/text (states) */
+  --color-fg1: var(--color-gray-80);
+  --color-fg1-hover: var(--color-gray-90);
+  --color-fg1-focus: var(--color-gray-90);
+  --color-fg1-press: var(--color-gray-100);
+  --color-fg1-disable: var(--color-gray-20);
+
+  --color-fg2: var(--color-gray-50);
+  --color-fg2-hover: var(--color-gray-60);
+  --color-fg2-focus: var(--color-gray-60);
+  --color-fg2-press: var(--color-gray-70);
+  --color-fg2-disable: var(--color-gray-20);
+  --color-fg2-selected: var(--color-blue-60);
+
+  --color-fg3: var(--color-gray-0);
+
+  /* neutral stroke/border (states) */
+  --color-st1: var(--color-gray-50);
+  --color-st1-hover: var(--color-gray-60);
+  --color-st1-focus: var(--color-gray-60);
+  --color-st1-press: var(--color-gray-70);
+  --color-st1-disable: var(--color-gray-20);
+
+  --color-st2: var(--color-gray-20);
+  --color-st2-hover: var(--color-gray-30);
+  --color-st2-focus: var(--color-gray-30);
+  --color-st2-press: var(--color-gray-40);
+  --color-st2-disable: var(--color-gray-20);
+
+  --color-st3: var(--color-gray-10);
+  --color-st3-hover: var(--color-gray-20);
+  --color-st3-focus: var(--color-gray-20);
+  --color-st3-press: var(--color-gray-30);
+  --color-st3-disable: var(--color-gray-10);
+  --color-st3-selected: var(--color-blue-60);
+}
