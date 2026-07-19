@@ -169,6 +169,12 @@
   --color-error-fg2-press: var(--color-gray-0);
   --color-error-fg2-disable: var(--color-gray-0);
 
+  /* info (blue accent) — text/link foreground (states). No ramp; Figma hex. */
+  --color-info-fg1: #0172b4;
+  --color-info-fg1-hover: #015687;
+  --color-info-fg1-press: #00395a;
+  --color-info-fg1-disable: #99d2f3;
+
   /* neutral surfaces (states) */
   --color-bg1: var(--color-gray-0);
   --color-bg1-hover: var(--color-gray-6);
