@@ -7,15 +7,19 @@ const meta = {
   component: Input,
   parameters: { layout: "centered" },
   args: {
-    placeholder: "Replace me",
-    "aria-label": "Example field",
+    placeholder: "sample text",
+    "aria-label": "Sample field",
+    size: "md",
   },
   argTypes: {
+    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
+    error: { control: "boolean" },
     disabled: { control: "boolean" },
+    readOnly: { control: "boolean" },
   },
   decorators: [
     (Story) => (
-      <div className="w-[408px] max-w-full">
+      <div className="w-[456px] max-w-full">
         <Story />
       </div>
     ),
@@ -25,10 +29,33 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-/** Placeholder / empty state per the Figma spec. */
-export const Placeholder: Story = {};
+/** Empty — placeholder shown in `fg1-disable`. Hover/focus are live (interact). */
+export const Default: Story = {};
 
-/** With a typed value (content layer). */
+/** Typed value in `fg1`. */
 export const Filled: Story = {
-  args: { defaultValue: "Replace me" },
+  args: { defaultValue: "sample text" },
+};
+
+export const Readonly: Story = {
+  args: { defaultValue: "sample text", readOnly: true },
+};
+
+export const Disabled: Story = {
+  args: { defaultValue: "sample text", disabled: true },
+};
+
+export const Error: Story = {
+  args: { defaultValue: "sample text", error: true },
+};
+
+/** All three heights (sm 36 / md 40 / lg 48). */
+export const Sizes: Story = {
+  render: (args) => (
+    <div className="flex flex-col gap-3">
+      <Input {...args} size="sm" aria-label="Small field" />
+      <Input {...args} size="md" aria-label="Medium field" />
+      <Input {...args} size="lg" aria-label="Large field" />
+    </div>
+  ),
 };

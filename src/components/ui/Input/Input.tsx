@@ -2,22 +2,43 @@ import type { ComponentProps } from "react";
 
 import { cn } from "@/lib/utils";
 
+export type InputSize = "sm" | "md" | "lg";
+
+interface InputProps extends Omit<ComponentProps<"input">, "size"> {
+  /** Control height: sm = 36px, md = 40px, lg = 48px. Defaults to md. */
+  size?: InputSize;
+  /** Error styling (red border). Interaction states still apply otherwise. */
+  error?: boolean;
+}
+
+const sizeClasses: Record<InputSize, string> = {
+  sm: "h-9",
+  md: "h-10",
+  lg: "h-12",
+};
+
 /**
- * Base text input (Figma "field" placeholder spec).
+ * Base text input (Figma "Input" layer). Presentational — no validation logic.
  *
- * Default appearance only for now — the stateful "input layer" (hover/focus/
- * filled/disabled/error) lands when that Figma layer is provided. Presentational:
- * no data logic. Spec: h-40, primary-bg1 fill, Inter 600 / 14 / 20, tracking -2%,
- * primary-fg1 text + placeholder, logical-start aligned, no radius.
+ * States (Figma): default `st2` border → hover `st2-hover` → focus `primary-fg1`
+ * (teal) → read-only `st1` → disabled `st2-disable`. `error` forces a red
+ * `error-fg1` border across states. Text `fg1` (hover `fg1-hover`); placeholder
+ * and disabled text `fg1-disable`. Fill (bg-bg1), 8px radius, 1px border,
+ * Inter 400 / 14 / 20, -2% tracking.
  */
-export function Input({ className, ...props }: ComponentProps<"input">) {
+export function Input({ size = "md", error, className, ...props }: InputProps) {
   return (
     <input
+      aria-invalid={error || undefined}
       className={cn(
-        "text-primary-fg1 placeholder:text-primary-fg1 bg-primary-bg1",
-        "h-10 w-full rounded-none px-4 text-start",
-        "text-sm font-semibold tracking-[-0.02em]",
-        "border-0 outline-none",
+        "bg-bg1 text-fg1 placeholder:text-fg1-disable rounded-3 w-full border px-3 text-start",
+        "text-sm font-normal tracking-[-0.02em] outline-none",
+        "border-st2 hover:border-st2-hover hover:text-fg1-hover",
+        "focus:border-primary-fg1 focus:text-fg1",
+        "read-only:border-st1",
+        "disabled:border-st2-disable disabled:text-fg1-disable disabled:cursor-not-allowed",
+        sizeClasses[size],
+        error && "border-error-fg1 hover:border-error-fg1 focus:border-error-fg1",
         className,
       )}
       {...props}

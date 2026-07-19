@@ -2,11 +2,13 @@ import { type ComponentProps, useId } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { Input } from "../Input";
+import { Input, type InputSize } from "../Input";
 
-interface FieldProps extends Omit<ComponentProps<"input">, "id"> {
+interface FieldProps extends Omit<ComponentProps<"input">, "id" | "size"> {
   /** Label text shown above the input. */
   label: string;
+  /** Input height: sm / md / lg. */
+  size?: InputSize;
   /** Show the red required asterisk after the label. */
   required?: boolean;
   /** Default helper message (neutral-fg2). Ignored when `error` is set. */
@@ -23,7 +25,7 @@ interface FieldProps extends Omit<ComponentProps<"input">, "id"> {
  * label Inter 400 / 14 / 20 (fg1); required 10 / 12 (error-fg1);
  * message Inter 600 / 12 / 16 (fg2 default, error-fg1 on error).
  */
-export function Field({ label, required, hint, error, id, className, ...props }: FieldProps) {
+export function Field({ label, required, hint, error, id, size, className, ...props }: FieldProps) {
   const generatedId = useId();
   const inputId = id ?? generatedId;
   const messageId = `${inputId}-message`;
@@ -49,8 +51,9 @@ export function Field({ label, required, hint, error, id, className, ...props }:
 
       <Input
         id={inputId}
+        size={size}
+        error={isError}
         required={required}
-        aria-invalid={isError || undefined}
         aria-describedby={message ? messageId : undefined}
         {...props}
       />
