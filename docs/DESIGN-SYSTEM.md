@@ -65,7 +65,24 @@ Rules:
 - Build **all states**: default / hover / focus / filled / disabled / **error**. Grading checks these.
 - **LTR / English** UI (`dir="ltr"`). Still prefer logical props (`ms-*`/`me-*`, `text-start`) for
   clean direction-agnostic layout, but no RTL mirroring is required.
+- **Responsive by default** — see below.
 - a11y is non-negotiable: labels, roles, visible focus rings, keyboard support.
+
+### Responsive by default (required)
+
+Every component and layout must work from mobile → tablet → desktop. Mobile was **not** designed,
+so our responsive decisions are graded — treat this as a first-class requirement, not an afterthought.
+
+- **Never hard-code a width/height on the component itself.** Base UI is fluid: default to `w-full`
+  and let the parent constrain size. Fixed Figma frame sizes (e.g. 408px) belong in the **story
+  decorator**, not the component. (See `Input`/`Field` — component is `w-full`; 408 lives in the story.)
+- Prefer **fluid + intrinsic** sizing: `w-full`, `max-w-*`, `min-w-0`, `flex-1`, `grid`/`flex` with
+  wrapping. Use `max-w-full` on anything that could overflow (images, media, wide text).
+- Add breakpoints **mobile-first**: unprefixed = mobile, then `sm:` / `md:` / `lg:` to enhance.
+  Don't ship desktop-only layouts.
+- Layout patterns (from CLAUDE.md §8): table → stacked cards on mobile; sidebar → drawer on
+  mobile/tablet. Tap targets ≥ 40px; no horizontal page scroll.
+- Verify each component in Storybook at narrow viewports (toolbar viewport addon) before done.
 
 ## Storybook
 
