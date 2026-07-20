@@ -1,5 +1,8 @@
+"use client";
+
 import type { ComponentProps, ReactNode } from "react";
 
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 
 import { getPaginationRange } from "./pagination-range";
@@ -55,7 +58,8 @@ const cellBase =
  * chevrons and collapsing ellipsis. Controlled: pass `page` + `totalPages` and
  * either `onPageChange` (buttons) or `getHref` (links, for URL-based server
  * pagination). Selected cell uses primary-bg2 / fg3; others fg1 with
- * hover/press; disabled uses fg1-disable. md radius, 40px tall.
+ * hover/press; disabled uses fg1-disable. md radius, 40px tall. Siblings collapse
+ * to 0 below `sm` so the bar never overflows narrow (<320px) screens.
  */
 export function Pagination({
   page,
@@ -67,7 +71,9 @@ export function Pagination({
   className,
   ...props
 }: PaginationProps) {
-  const items = getPaginationRange(page, totalPages, siblingCount);
+  const isMobile = useMediaQuery("(max-width: 639px)");
+  const effectiveSiblings = isMobile ? 0 : siblingCount;
+  const items = getPaginationRange(page, totalPages, effectiveSiblings);
 
   const renderCell = ({
     key,
@@ -128,7 +134,7 @@ export function Pagination({
     <nav
       aria-label="Pagination"
       className={cn(
-        "bg-bg1 rounded-3 inline-flex h-10 items-center gap-2 border p-1",
+        "bg-bg1 rounded-3 inline-flex h-10 max-w-full items-center gap-2 border p-1",
         disabled ? "border-st2-disable" : "border-st2",
         className,
       )}
