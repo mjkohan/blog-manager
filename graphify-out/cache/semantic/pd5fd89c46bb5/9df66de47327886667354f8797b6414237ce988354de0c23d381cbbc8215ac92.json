@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {
+      "id": "public_icons_chevron_right_icon",
+      "label": "Chevron Right Icon",
+      "file_type": "image",
+      "source_file": "public/icons/chevron-right.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [],
+  "hyperedges": []
+}

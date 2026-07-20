@@ -1,0 +1,42 @@
+{
+  "nodes": [
+    {
+      "id": "public_icons_warning_icon",
+      "label": "Warning Icon",
+      "file_type": "image",
+      "source_file": "public/icons/warning.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "public_icons_info_icon",
+      "target": "public_icons_warning_icon",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "public/icons/warning.svg",
+      "source_location": null,
+      "weight": 0.85
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "status_and_action_ui_set",
+      "label": "Status and Action UI Icon Set",
+      "nodes": [
+        "public_icons_info_icon",
+        "public_icons_warning_icon",
+        "public_icons_ellipsis_icon"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "public/icons/warning.svg"
+    }
+  ]
+}

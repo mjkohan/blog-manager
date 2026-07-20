@@ -1,0 +1,288 @@
+{
+  "nodes": [
+    {
+      "id": "design_system",
+      "label": "Design System",
+      "file_type": "document",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_tokens",
+      "label": "Design Tokens (tokens.css)",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_color_ramps",
+      "label": "Color Ramps (inverted scale)",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_semantic_tokens",
+      "label": "Semantic State Tokens",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_theme_directive",
+      "label": "@theme in globals.css",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_component_convention",
+      "label": "Component Authoring Convention",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_component_states",
+      "label": "All Component States (default/hover/focus/filled/disabled/error)",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_responsive_default",
+      "label": "Responsive by Default",
+      "file_type": "rationale",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_cn_helper",
+      "label": "cn() helper (clsx + tailwind-merge)",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_storybook",
+      "label": "Storybook (nextjs-vite)",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "design_system_vitest_rtl",
+      "label": "Vitest + RTL Testing",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "design_system",
+      "target": "design_system_tokens",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system",
+      "target": "design_system_color_ramps",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system",
+      "target": "design_system_semantic_tokens",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system_color_ramps",
+      "target": "design_system_semantic_tokens",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system_tokens",
+      "target": "design_system_theme_directive",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system_semantic_tokens",
+      "target": "design_system_theme_directive",
+      "relation": "references",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system",
+      "target": "design_system_component_convention",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system_component_convention",
+      "target": "design_system_component_states",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system_component_convention",
+      "target": "design_system_cn_helper",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system_component_convention",
+      "target": "design_system_responsive_default",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system",
+      "target": "design_system_storybook",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system",
+      "target": "design_system_vitest_rtl",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "design_system_component_convention",
+      "target": "design_system_storybook",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "component_authoring_pattern",
+      "label": "Component Authoring Pattern",
+      "nodes": [
+        "design_system_component_convention",
+        "design_system_component_states",
+        "design_system_cn_helper",
+        "design_system_storybook",
+        "design_system_vitest_rtl"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/DESIGN-SYSTEM.md"
+    },
+    {
+      "id": "design_token_pipeline",
+      "label": "Design Token Pipeline",
+      "nodes": [
+        "design_system_tokens",
+        "design_system_color_ramps",
+        "design_system_semantic_tokens",
+        "design_system_theme_directive"
+      ],
+      "relation": "form",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/DESIGN-SYSTEM.md"
+    }
+  ]
+}

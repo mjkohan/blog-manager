@@ -1,0 +1,17 @@
+{
+  "nodes": [
+    {
+      "id": "public_icons_info_icon",
+      "label": "Info Icon",
+      "file_type": "image",
+      "source_file": "public/icons/info.svg",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [],
+  "hyperedges": []
+}
