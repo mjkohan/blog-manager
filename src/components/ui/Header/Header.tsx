@@ -13,8 +13,9 @@ interface HeaderProps extends Omit<ComponentProps<"header">, "title"> {
 
 /**
  * App header (Figma "header"). Left: "Welcome <user>" (user in semibold). Center:
- * a neutral title chip (bg2, sm radius, 16/24). Right: actions slot. Flanking
- * flex-1 zones keep the chip centered; the greeting truncates on small screens.
+ * a neutral title chip (bg2, sm radius, 16/24), hidden below `sm` so the greeting
+ * and actions fit on mobile. Right: actions slot. Flanking flex-1 zones keep the
+ * chip centered; the greeting truncates on small screens.
  * Presentational — pass the Log out button (with its handler) via `actions`.
  */
 export function Header({ userName, title, actions, className, ...props }: HeaderProps) {
@@ -36,7 +37,7 @@ export function Header({ userName, title, actions, className, ...props }: Header
       </div>
 
       {title != null && (
-        <div className="bg-bg2 text-fg1 rounded-2 px-3 py-2 text-base font-semibold tracking-[-0.02em] whitespace-nowrap">
+        <div className="bg-bg2 text-fg1 rounded-2 hidden px-3 py-2 text-base font-semibold tracking-[-0.02em] whitespace-nowrap sm:block">
           {title}
         </div>
       )}
