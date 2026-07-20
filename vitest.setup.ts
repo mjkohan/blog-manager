@@ -1,7 +1,14 @@
 import "@testing-library/jest-dom/vitest";
 
 import { cleanup } from "@testing-library/react";
-import { afterEach, vi } from "vitest";
+import { afterAll, afterEach, beforeAll, vi } from "vitest";
+
+import { server } from "./src/test/msw/server";
+
+// MSW: intercept DummyJSON calls in tests. Unhandled requests pass through.
+beforeAll(() => server.listen({ onUnhandledRequest: "bypass" }));
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
 
 // jsdom has no matchMedia; stub it (non-matching by default) so components using
 // useMediaQuery render at the desktop breakpoint in tests.
