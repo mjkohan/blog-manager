@@ -26,7 +26,8 @@ interface ModalProps extends Omit<ComponentProps<"dialog">, "onClose"> {
  * Modal dialog (Figma "_base-modal"). Built on the native `<dialog>` element for
  * a free focus trap, Esc-to-close, and an inert background. Controlled via
  * `open` / `onClose`. Sizes small (456) / medium (600) / large (800). Compose
- * with ModalHeader / ModalBody / ModalFooter / ModalMessage. 8px radius.
+ * with ModalHeader / ModalBody / ModalFooter / ModalMessage. 8px radius. Keeps a
+ * ~16px gutter each side on small screens (never edge-to-edge).
  */
 export function Modal({
   open,
@@ -71,7 +72,7 @@ export function Modal({
           if (dismissable && event.target === event.currentTarget) onClose?.();
         }}
         className={cn(
-          "bg-bg1 rounded-3 m-auto w-full p-0 shadow-[0px_8px_40px_0px_#2533433D]",
+          "bg-bg1 rounded-3 m-auto w-[calc(100%-2rem)] p-0 shadow-[0px_8px_40px_0px_#2533433D]",
           "max-h-[85dvh] overflow-y-auto backdrop:bg-gray-100/50",
           sizeClasses[size],
           className,
