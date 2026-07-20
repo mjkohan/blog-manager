@@ -59,27 +59,3 @@ export const Loading: Story = {
 export const Disabled: Story = {
   args: { disabled: true },
 };
-
-/** Full matrix: variant × (text / icon) × state. Hover/press are live. */
-export const Matrix: Story = {
-  render: () => {
-    const variants = ["primary", "secondary", "danger"] as const;
-    return (
-      <div className="flex flex-col gap-3">
-        {variants.map((variant) => (
-          <div key={variant} className="flex items-center gap-3">
-            <Button variant={variant}>button</Button>
-            <Button variant={variant} icon={<CheckCircle />} aria-label="confirm" />
-            <Button variant={variant} disabled>
-              button
-            </Button>
-            <Button variant={variant} loading>
-              button
-            </Button>
-            <Button variant={variant} loading icon={<CheckCircle />} aria-label="loading" />
-          </div>
-        ))}
-      </div>
-    );
-  },
-};
