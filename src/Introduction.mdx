@@ -1,0 +1,27 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Get started" />
+
+# Blog Admin Dashboard — UI Kit
+
+The base Design-Kit components for the **Arvancloud Challenge** blog admin
+dashboard. Everything under `UI/*` is presentational (no data fetching, no domain
+logic) and built to the Figma Design Kit with all states — default, hover, focus,
+filled, disabled, and error.
+
+## Conventions
+
+- **Tokens** (color, radius, spacing, type) live in `@theme` in
+  `src/app/globals.css` — the single source of truth (Tailwind 4, no
+  `tailwind.config.js`).
+- **Responsive**: components are fluid and stay usable down to ~320px. The
+  sidebar collapses to a drawer and tables stack into cards on mobile.
+- **Accessibility**: full keyboard nav, visible focus rings, ARIA labels, focus
+  trap in modals/menus. The a11y addon runs on every story (violations fail).
+- **Docs**: each component's Docs page is generated from its meta and JSDoc
+  (`autodocs`). Interaction behavior is covered by `play` functions where useful.
+
+## Explore
+
+Open any component in the sidebar (e.g. **UI/Button**, **UI/Pagination**,
+**UI/Modal**) to see its states and its auto-generated **Docs** tab.

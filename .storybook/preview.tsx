@@ -7,6 +7,9 @@ import "../src/app/globals.css";
 const inter = Inter({ variable: "--font-inter", subsets: ["latin"] });
 
 const preview: Preview = {
+  // Auto-generate a Docs page (description, controls table, source) for every
+  // component from its meta + JSDoc.
+  tags: ["autodocs"],
   parameters: {
     controls: {
       matchers: {
