@@ -6,11 +6,11 @@ import { MenuItem } from "./MenuItem";
 const meta = {
   title: "UI/Menu",
   component: Menu,
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
   args: { "aria-label": "Actions" },
   decorators: [
     (Story) => (
-      <div className="w-[267px] max-w-full">
+      <div className="w-full max-w-[267px]">
         <Story />
       </div>
     ),

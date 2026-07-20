@@ -5,10 +5,10 @@ import { Placeholder } from "./Placeholder";
 const meta = {
   title: "UI/Placeholder",
   component: Placeholder,
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
   decorators: [
     (Story) => (
-      <div className="w-[408px] max-w-full">
+      <div className="w-full max-w-[408px]">
         <Story />
       </div>
     ),

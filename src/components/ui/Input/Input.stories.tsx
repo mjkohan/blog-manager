@@ -5,7 +5,7 @@ import { Input } from "./Input";
 const meta = {
   title: "UI/Input",
   component: Input,
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
   args: {
     placeholder: "sample text",
     "aria-label": "Sample field",
@@ -19,7 +19,7 @@ const meta = {
   },
   decorators: [
     (Story) => (
-      <div className="w-[456px] max-w-full">
+      <div className="w-full max-w-[456px]">
         <Story />
       </div>
     ),

@@ -5,14 +5,14 @@ import { Field } from "./Field";
 const meta = {
   title: "UI/Field",
   component: Field,
-  parameters: { layout: "centered" },
+  parameters: { layout: "padded" },
   args: {
     label: "Label",
     placeholder: "Replace me",
   },
   decorators: [
     (Story) => (
-      <div className="w-[408px] max-w-full">
+      <div className="w-full max-w-[408px]">
         <Story />
       </div>
     ),
