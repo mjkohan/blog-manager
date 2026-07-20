@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/nextjs-vite";
+import { expect, fn } from "storybook/test";
 
 import { Button } from "./Button";
 
@@ -29,6 +30,8 @@ const meta = {
   args: {
     children: "button",
     variant: "primary",
+    // Spy so play functions can assert on click behavior.
+    onClick: fn(),
   },
   argTypes: {
     variant: { control: "inline-radio", options: ["primary", "danger", "secondary"] },
@@ -40,7 +43,12 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Primary: Story = {};
+export const Primary: Story = {
+  play: async ({ args, canvas, userEvent }) => {
+    await userEvent.click(canvas.getByRole("button", { name: "button" }));
+    await expect(args.onClick).toHaveBeenCalledOnce();
+  },
+};
 export const Danger: Story = { args: { variant: "danger" } };
 export const Secondary: Story = { args: { variant: "secondary" } };
 
@@ -54,6 +62,13 @@ export const WithIcon: Story = {
 
 export const Loading: Story = {
   args: { loading: true },
+  play: async ({ args, canvas, userEvent }) => {
+    const button = canvas.getByRole("button");
+    await expect(button).toHaveAttribute("aria-busy", "true");
+    // Loading blocks interaction: the click must not reach onClick.
+    await userEvent.click(button);
+    await expect(args.onClick).not.toHaveBeenCalled();
+  },
 };
 
 export const Disabled: Story = {
