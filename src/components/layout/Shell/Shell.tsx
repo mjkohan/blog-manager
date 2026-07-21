@@ -42,7 +42,7 @@ export function Shell({ userName, actions, children }: ShellProps) {
   }, [drawerOpen]);
 
   return (
-    <div className="bg-bg2 flex min-h-dvh flex-col">
+    <div className="bg-bg2 flex h-dvh flex-col overflow-hidden">
       <Header
         userName={userName}
         title="Arvancloud Challenge"
@@ -60,8 +60,8 @@ export function Shell({ userName, actions, children }: ShellProps) {
         }
       />
 
-      <div className="flex flex-1">
-        <aside className="border-st3 hidden w-64 shrink-0 border-e md:block">
+      <div className="flex min-h-0 flex-1">
+        <aside className="border-st3 hidden w-64 shrink-0 overflow-y-auto border-e md:block">
           <Sidebar />
         </aside>
         <main className="min-w-0 flex-1 overflow-y-auto p-4 md:p-6">{children}</main>
