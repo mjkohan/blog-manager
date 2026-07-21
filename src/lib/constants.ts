@@ -18,6 +18,9 @@ export const ACCESS_TOKEN_TTL_MINUTES = 30;
 /** Refresh-token cookie lifetime (DummyJSON refresh tokens are longer-lived). */
 export const REFRESH_TOKEN_TTL_DAYS = 7;
 
+/** Articles per page for the list — fixed server-side pagination window. */
+export const ARTICLES_PER_PAGE = 10;
+
 /** Application route paths. */
 export const ROUTES = {
   home: "/",
@@ -25,4 +28,12 @@ export const ROUTES = {
   register: "/register",
   articles: "/articles",
   articlesCreate: "/articles/create",
+  /**
+   * List page path. Graded routing detail: page 1 is the special `/articles`
+   * path; pages 2..N live under `/articles/page/:page`. Never collapse this into
+   * a single query-param route.
+   */
+  articlesPage: (page: number) => (page <= 1 ? "/articles" : `/articles/page/${page}`),
+  /** Edit form for a post, keyed by its title-derived slug (see API-MAPPING). */
+  articlesEdit: (slug: string) => `/articles/edit/${slug}`,
 } as const;

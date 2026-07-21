@@ -12,6 +12,8 @@ interface MenuItemProps extends Omit<ComponentProps<"button">, "size"> {
   loading?: boolean;
   /** Row height/text scale: sm / md (default) / lg. */
   size?: ControlSize;
+  /** Render an `<a>` (navigation) instead of a `<button>` — e.g. an Edit link. */
+  href?: string;
 }
 
 const sizeClasses: Record<ControlSize, string> = {
@@ -30,29 +32,33 @@ export function MenuItem({
   icon,
   loading,
   size = "md",
+  href,
   children,
   className,
   disabled,
   ...props
 }: MenuItemProps) {
-  return (
-    <button
-      type="button"
-      role="menuitem"
-      disabled={disabled || loading}
-      aria-disabled={loading || undefined}
-      className={cn(
-        "rounded-3 flex w-full items-center gap-2 text-start font-normal tracking-[-0.02em] transition-colors outline-none",
-        sizeClasses[size],
-        loading
-          ? "text-fg2 cursor-default"
-          : disabled
-            ? "text-fg1-disable cursor-not-allowed"
-            : "text-fg1 enabled:hover:bg-bg1-hover enabled:active:bg-bg1-press focus-visible:bg-bg1-hover",
-        className,
-      )}
-      {...props}
-    >
+  const base = cn(
+    "rounded-3 flex w-full items-center gap-2 text-start font-normal tracking-[-0.02em] transition-colors outline-none",
+    sizeClasses[size],
+  );
+  const buttonClasses = cn(
+    base,
+    loading
+      ? "text-fg2 cursor-default"
+      : disabled
+        ? "text-fg1-disable cursor-not-allowed"
+        : "text-fg1 enabled:hover:bg-bg1-hover enabled:active:bg-bg1-press focus-visible:bg-bg1-hover",
+    className,
+  );
+  const anchorClasses = cn(
+    base,
+    "text-fg1 hover:bg-bg1-hover active:bg-bg1-press focus-visible:bg-bg1-hover",
+    className,
+  );
+
+  const content = (
+    <>
       {loading ? (
         <Spinner className="text-fg1" />
       ) : (
@@ -61,6 +67,28 @@ export function MenuItem({
         )
       )}
       <span>{children}</span>
+    </>
+  );
+
+  if (href !== undefined && !disabled && !loading) {
+    const anchorProps = props as unknown as ComponentProps<"a">;
+    return (
+      <a {...anchorProps} href={href} role="menuitem" className={anchorClasses}>
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      role="menuitem"
+      disabled={disabled || loading}
+      aria-disabled={loading || undefined}
+      className={buttonClasses}
+      {...props}
+    >
+      {content}
     </button>
   );
 }

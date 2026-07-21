@@ -52,4 +52,33 @@ export const handlers = [
     const body = (await request.json()) as Record<string, unknown>;
     return HttpResponse.json({ id: 209, ...body }, { status: 201 });
   }),
+
+  // --- Articles (posts) ---
+  http.get(`${BASE}/posts`, ({ request }) => {
+    const url = new URL(request.url);
+    const limit = Number(url.searchParams.get("limit") ?? 10);
+    const skip = Number(url.searchParams.get("skip") ?? 0);
+    const total = 251;
+    const posts = Array.from({ length: limit }, (_, i) => {
+      const id = skip + i + 1;
+      return {
+        id,
+        title: `Article title ${id}`,
+        body: `Body words for post ${id} `.repeat(10).trim(),
+        tags: ["history", "american"],
+        userId: 100 + (id % 3),
+      };
+    });
+    return HttpResponse.json({ posts, total, skip, limit });
+  }),
+
+  http.get(`${BASE}/users/:id`, ({ params }) => {
+    const id = Number(params.id);
+    return HttpResponse.json({ id, username: `author${id}` });
+  }),
+
+  http.delete(`${BASE}/posts/:id`, ({ params }) => {
+    const id = Number(params.id);
+    return HttpResponse.json({ id, isDeleted: true, deletedOn: new Date().toISOString() });
+  }),
 ];

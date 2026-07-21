@@ -13,9 +13,10 @@ interface SectionProps extends ComponentProps<"section"> {
 }
 
 /**
- * Section (Figma "Section"). A labelled content region: a SectionHeader over a
- * body slot, separated by a divider when there is content. Labels itself for
- * a11y via aria-labelledby. Presentational — drop any content as children.
+ * Section (Figma "Section"). A labelled content region rendered as a white
+ * (`neutral-bg1`) card: a SectionHeader (24px padding) over a body slot (24px
+ * padding), with a full-width divider between them when there is content. Labels
+ * itself for a11y via aria-labelledby. Presentational — drop content as children.
  */
 export function Section({
   label,
@@ -31,11 +32,11 @@ export function Section({
   return (
     <section
       aria-labelledby={headingId}
-      className={cn("flex flex-col gap-4", className)}
+      className={cn("bg-bg1 rounded-4 flex flex-col", className)}
       {...props}
     >
-      <SectionHeader label={label} caption={caption} headingId={headingId} />
-      {hasContent && <div className={cn(divider && "border-st3 border-t pt-4")}>{children}</div>}
+      <SectionHeader label={label} caption={caption} headingId={headingId} className="p-6" />
+      {hasContent && <div className={cn("p-6", divider && "border-st3 border-t")}>{children}</div>}
     </section>
   );
 }
