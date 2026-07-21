@@ -49,14 +49,15 @@ export function ArticlesTable({ rows, onDelete, deletingId }: ArticlesTableProps
       <div className="hidden overflow-x-auto md:block">
         <table className="w-full border-collapse text-start text-sm">
           <thead>
-            <tr className="border-st3 border-b">
+            <tr className="bg-bg2 border-st3 h-12 border-b">
               {COLUMNS.map((col, index) => (
                 <th
                   key={col || "actions"}
                   scope="col"
                   className={cn(
-                    "text-fg2 px-4 py-3 text-start font-semibold whitespace-nowrap",
-                    index === COLUMNS.length - 1 && "text-end",
+                    "text-fg1 px-4 text-start align-middle text-lg leading-6 font-semibold tracking-[-0.02em] whitespace-nowrap",
+                    index === 0 && "rounded-s-md",
+                    index === COLUMNS.length - 1 && "rounded-e-md text-end",
                   )}
                 >
                   {col || <span className="sr-only">Actions</span>}
