@@ -25,7 +25,16 @@ export async function getCurrentUser(): Promise<AuthUser | null> {
 
     try {
       const tokens = await refresh(refreshToken);
-      await setSession(tokens);
+      // Persisting the refreshed cookies is best-effort: `cookies().set()` throws
+      // when called during a Server Component render (only Server Actions / Route
+      // Handlers may write cookies). Swallow that so we still resolve the user
+      // with the fresh token — otherwise a single 401 wipes the header greeting.
+      try {
+        await setSession(tokens);
+      } catch {
+        // Not in a writable context; the cookie refresh will happen on the next
+        // Server Action / login. The in-memory token is enough for this render.
+      }
       return await getMe(tokens.accessToken);
     } catch {
       return null;

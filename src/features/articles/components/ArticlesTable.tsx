@@ -27,11 +27,12 @@ function TagList({ tags }: { tags: string[] }) {
 }
 
 /**
- * Article list, responsive. Desktop (`md+`) renders a semantic `<table>` with a
- * sticky-scoped header; below `md` the same rows become stacked cards (label →
- * value) so nothing overflows a narrow screen. Each row carries the `...` actions
- * menu. Empty input shows a friendly empty state. Presentational — data + the
- * delete handler come from the parent (`ArticlesList`).
+ * Article list, responsive. Desktop (`lg+`) renders a semantic fixed-layout
+ * `<table>` whose columns share the available width and truncate; below `lg`
+ * (mobile + tablet, where the sidebar would squeeze the table) the same rows
+ * become stacked cards (label → value). Each row carries the `...` actions menu.
+ * Empty input shows a friendly empty state. Presentational — data + the delete
+ * handler come from the parent (`ArticlesList`).
  */
 export function ArticlesTable({ rows, onDelete, deletingId }: ArticlesTableProps) {
   if (rows.length === 0) {
@@ -45,9 +46,20 @@ export function ArticlesTable({ rows, onDelete, deletingId }: ArticlesTableProps
 
   return (
     <>
-      {/* Desktop: table */}
-      <div className="hidden overflow-x-auto md:block">
-        <table className="w-full border-collapse text-start text-sm">
+      {/* Desktop (lg+): fixed-layout table — columns share the available width and
+          truncate, so it never overflows the sidebar-narrowed main. Below lg the
+          same rows render as stacked cards. */}
+      <div className="hidden lg:block">
+        <table className="w-full table-fixed border-collapse text-start text-sm">
+          <colgroup>
+            <col className="w-14" />
+            <col className="w-[24%]" />
+            <col className="w-32" />
+            <col className="w-[16%]" />
+            <col />
+            <col className="w-28" />
+            <col className="w-16" />
+          </colgroup>
           <thead>
             <tr className="bg-bg2 border-st3 h-12 border-b">
               {COLUMNS.map((col, index) => (
@@ -71,19 +83,19 @@ export function ArticlesTable({ rows, onDelete, deletingId }: ArticlesTableProps
                 <td className="px-4 py-3 text-center align-middle">
                   <IndexBadge value={row.id} />
                 </td>
-                <td className="text-fg1 max-w-[220px] truncate px-4 py-3 align-middle text-base leading-6 font-semibold tracking-[-0.02em]">
+                <td className="text-fg1 truncate px-4 py-3 align-middle text-base leading-6 font-semibold tracking-[-0.02em]">
                   {row.title}
                 </td>
-                <td className="text-fg1 px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em] whitespace-nowrap">
+                <td className="text-fg1 truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   @{row.author}
                 </td>
-                <td className="text-fg1 max-w-[160px] truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
+                <td className="text-fg1 truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   <TagList tags={row.tags} />
                 </td>
-                <td className="text-fg1 max-w-[280px] truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
+                <td className="text-fg1 truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   {row.excerpt}
                 </td>
-                <td className="text-fg1 px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em] whitespace-nowrap">
+                <td className="text-fg1 truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   {row.createdAt}
                 </td>
                 <td className="px-4 py-3 align-middle">
@@ -95,8 +107,8 @@ export function ArticlesTable({ rows, onDelete, deletingId }: ArticlesTableProps
         </table>
       </div>
 
-      {/* Mobile: stacked cards */}
-      <ul className="flex flex-col gap-3 md:hidden">
+      {/* Mobile + tablet (< lg): stacked cards */}
+      <ul className="flex flex-col gap-3 lg:hidden">
         {rows.map((row) => (
           <li key={row.id} className="border-st3 rounded-3 flex flex-col gap-3 border p-4">
             <div className="flex items-start justify-between gap-2">
