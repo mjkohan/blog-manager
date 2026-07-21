@@ -13,31 +13,29 @@ interface AuthCardProps {
 }
 
 /**
- * Auth screen shell (Figma "Sign in" / "Sign up"). A white card centered on a
- * full-height neutral page: title over a divider, the form body, then an
- * optional footer row. Presentational — no form logic. Responsive: full width
- * (minus page padding) on mobile, capped at ~448px on larger screens.
+ * Auth screen shell (Figma "Sign in" / "Sign up"). A white 480px card centered
+ * on a full-height neutral page. Two Figma sections: a 92px-min header (title,
+ * 24px padding) and a body divided by a 1px top border (form + optional footer,
+ * 24px padding). Presentational — no form logic. Responsive: full width (minus
+ * page padding) on mobile, capped at 480px on larger screens.
  */
 export function AuthCard({ title, children, footer, className }: AuthCardProps) {
   return (
     <main className="bg-gray-6 flex min-h-screen w-full items-center justify-center p-4">
-      <div
-        className={cn(
-          "bg-bg1 rounded-5 w-full max-w-md shadow-[0px_8px_40px_0px_#2533431f]",
-          "flex flex-col gap-5 p-6",
-          className,
-        )}
-      >
-        <h1 className="text-fg1 text-start text-lg leading-6 font-semibold tracking-[-0.02em]">
-          {title}
-        </h1>
-        <hr className="border-st3 -mx-6 border-t" />
-        {children}
-        {footer != null && (
-          <p className="text-fg1 flex items-center justify-center gap-1 text-center text-sm tracking-[-0.02em]">
-            {footer}
-          </p>
-        )}
+      <div className={cn("bg-bg1 w-full max-w-[480px] overflow-hidden rounded-md", className)}>
+        <header className="flex min-h-[92px] flex-col justify-center gap-6 p-6">
+          <h1 className="text-fg1 text-start text-lg leading-6 font-semibold tracking-[-0.02em]">
+            {title}
+          </h1>
+        </header>
+        <section className="border-st3 flex flex-col gap-6 border-t p-6">
+          {children}
+          {footer != null && (
+            <p className="text-fg1 flex items-center justify-center gap-1 text-center text-sm tracking-[-0.02em]">
+              {footer}
+            </p>
+          )}
+        </section>
       </div>
     </main>
   );
