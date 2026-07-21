@@ -107,6 +107,29 @@ export const WarningIcon = createIcon(
   />,
 );
 
+export const MenuIcon = createIcon(
+  "0 0 20 20",
+  <>
+    <rect x="1" y="4" width="18" height="2" rx="1" />
+    <rect x="1" y="9" width="18" height="2" rx="1" />
+    <rect x="1" y="14" width="18" height="2" rx="1" />
+  </>,
+);
+
+export const PlusIcon = createIcon(
+  "0 0 20 20",
+  <path d="M10 3a1 1 0 0 1 1 1v5h5a1 1 0 1 1 0 2h-5v5a1 1 0 1 1-2 0v-5H4a1 1 0 1 1 0-2h5V4a1 1 0 0 1 1-1Z" />,
+);
+
+export const DocumentIcon = createIcon(
+  "0 0 20 20",
+  <path
+    fillRule="evenodd"
+    clipRule="evenodd"
+    d="M4 2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4Zm2 5a1 1 0 0 0 0 2h8a1 1 0 1 0 0-2H6Zm0 4a1 1 0 1 0 0 2h5a1 1 0 1 0 0-2H6Z"
+  />,
+);
+
 /** Registry of all icons (name -> component), handy for pickers/galleries. */
 export const icons = {
   "chevron-left": ChevronLeftIcon,
@@ -117,6 +140,9 @@ export const icons = {
   info: InfoIcon,
   "check-circle": CheckCircleIcon,
   warning: WarningIcon,
+  menu: MenuIcon,
+  plus: PlusIcon,
+  document: DocumentIcon,
 } as const;
 
 export type IconName = keyof typeof icons;

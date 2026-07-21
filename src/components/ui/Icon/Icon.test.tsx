@@ -20,6 +20,7 @@ describe("Icon", () => {
 
   it("registry exposes every named icon", () => {
     expect(Object.keys(icons)).toContain("check-circle");
-    expect(Object.keys(icons)).toHaveLength(8);
+    expect(Object.keys(icons)).toContain("menu");
+    expect(Object.keys(icons)).toHaveLength(11);
   });
 });

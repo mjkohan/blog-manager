@@ -9,6 +9,8 @@ interface HeaderProps extends Omit<ComponentProps<"header">, "title"> {
   title?: ReactNode;
   /** Right-aligned actions slot (e.g. a Log out button). */
   actions?: ReactNode;
+  /** Leading slot before the greeting (e.g. a mobile menu toggle). */
+  leading?: ReactNode;
 }
 
 /**
@@ -18,7 +20,7 @@ interface HeaderProps extends Omit<ComponentProps<"header">, "title"> {
  * chip centered; the greeting truncates on small screens.
  * Presentational — pass the Log out button (with its handler) via `actions`.
  */
-export function Header({ userName, title, actions, className, ...props }: HeaderProps) {
+export function Header({ userName, title, actions, leading, className, ...props }: HeaderProps) {
   return (
     <header
       className={cn(
@@ -27,7 +29,8 @@ export function Header({ userName, title, actions, className, ...props }: Header
       )}
       {...props}
     >
-      <div className="flex min-w-0 flex-1 items-center">
+      <div className="flex min-w-0 flex-1 items-center gap-2">
+        {leading}
         {userName != null && (
           <span className="text-fg1 truncate text-sm tracking-[-0.02em]">
             <span className="font-normal">Welcome </span>
