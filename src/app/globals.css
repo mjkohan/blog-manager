@@ -51,6 +51,8 @@ body {
   }
 }
 .drawer-dialog::backdrop {
+  /* Start the dim below the 64px header so the header stays fully visible. */
+  inset: 4rem 0 0 0;
   background-color: rgb(0 0 0 / 0.5);
   opacity: 0;
   transition:
