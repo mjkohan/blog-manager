@@ -44,6 +44,38 @@ Design `space-0X` maps 1:1 onto stock Tailwind spacing keys — no redefinition.
 Derived **per component** as Figma specs arrive (no speculative scale). When a component needs
 a type style not yet tokened, add it to `@theme` in `globals.css` and use it — don't inline.
 
+### Control sizes (sm / md / lg)
+
+The Figma kit ships interactive controls in three sizes. There is **one shared type** —
+`ControlSize` in `src/components/ui/control-size.ts` (`"sm" | "md" | "lg"`) — imported by every
+sized component so the scale stays consistent and re-tunable in one place. **Default is always
+`md`.** Heights follow the Input scale:
+
+| Size | Height        | Label text            |
+| ---- | ------------- | --------------------- |
+| `sm` | 36px (`h-9`)  | `text-xs` / `text-sm` |
+| `md` | 40px (`h-10`) | `text-sm` (default)   |
+| `lg` | 48px (`h-12`) | `text-base`           |
+
+Components exposing `size?: ControlSize`: **Button, Input, Field, LinkButton, Checkbox, MenuItem,
+Pagination, Placeholder, SidebarItem**. (`Modal` keeps its own width scale
+`small`/`medium`/`large` — a different axis, not `ControlSize`.)
+
+Authoring a new sized component:
+
+- Import `ControlSize`; add `size?: ControlSize`, default `"md"`; omit `size` from the spread
+  element's props (`Omit<ComponentProps<"…">, "size">`) so the native attribute never leaks.
+- Keep per-size classes in a `Record<ControlSize, string>` (or a small object of parts) and merge
+  with `cn()` — **classes must be literal strings** so Tailwind 4 can see them (never build a
+  class like `` `${bp}:${cls}` `` dynamically).
+- Add a `Sizes` story and a `size` argType (`inline-radio`, `["sm","md","lg"]`).
+
+**Responsive (desktop-only Figma → all breakpoints):** the design was drawn for desktop only, so
+our responsive decisions are graded. Do **not** hard-code a single size for a control that should
+change by viewport. Pick the size in the layout/consumer instead — either branch on
+`useMediaQuery` (see `Pagination`, which also collapses siblings below `sm`) or render the size
+that suits the context. Base UI stays fluid (`w-full`, `min-w-0`); the parent constrains it.
+
 ## Component authoring convention
 
 Base UI lives in `src/components/ui/<Name>/` and is **presentational only** — no data fetching,

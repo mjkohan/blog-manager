@@ -49,4 +49,13 @@ describe("Button", () => {
     render(<Button variant="danger">button</Button>);
     expect(screen.getByRole("button")).toHaveClass("bg-error-bg2");
   });
+
+  it("defaults to md height and applies the requested size", () => {
+    const { rerender } = render(<Button>button</Button>);
+    expect(screen.getByRole("button")).toHaveClass("h-10");
+    rerender(<Button size="lg">button</Button>);
+    expect(screen.getByRole("button")).toHaveClass("h-12");
+    rerender(<Button size="sm">button</Button>);
+    expect(screen.getByRole("button")).toHaveClass("h-9");
+  });
 });

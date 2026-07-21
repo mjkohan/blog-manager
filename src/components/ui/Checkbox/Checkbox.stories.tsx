@@ -13,6 +13,7 @@ const meta = {
     checked: { control: "boolean" },
     indeterminate: { control: "boolean" },
     disabled: { control: "boolean" },
+    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
   },
 } satisfies Meta<typeof Checkbox>;
 
@@ -31,4 +32,15 @@ export const Indeterminate: Story = {
 
 export const WithLabel: Story = {
   args: { label: "Remember me", "aria-label": undefined },
+};
+
+/** sm / md / lg box + label scale. */
+export const Sizes: Story = {
+  render: (args) => (
+    <div className="flex items-center gap-6">
+      <Checkbox {...args} size="sm" label="Small" checked aria-label={undefined} />
+      <Checkbox {...args} size="md" label="Medium" checked aria-label={undefined} />
+      <Checkbox {...args} size="lg" label="Large" checked aria-label={undefined} />
+    </div>
+  ),
 };

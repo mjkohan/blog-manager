@@ -4,6 +4,14 @@ import { type ComponentProps, type ReactNode, useEffect, useId, useRef, useState
 
 import { cn } from "@/lib/utils";
 
+import type { ControlSize } from "../control-size";
+
+const sizeClasses: Record<ControlSize, { box: string; label: string }> = {
+  sm: { box: "size-3.5", label: "text-xs" },
+  md: { box: "size-4", label: "text-sm" },
+  lg: { box: "size-5", label: "text-base" },
+};
+
 function CheckIcon() {
   return (
     <svg width="10" height="8" viewBox="0 0 10 8" fill="none" aria-hidden="true">
@@ -30,11 +38,13 @@ function MinusIcon() {
   );
 }
 
-interface CheckboxProps extends Omit<ComponentProps<"input">, "type"> {
+interface CheckboxProps extends Omit<ComponentProps<"input">, "type" | "size"> {
   /** Mixed state — renders the minus icon and reports `aria-checked="mixed"`. */
   indeterminate?: boolean;
   /** Optional visible label rendered next to the box. */
   label?: ReactNode;
+  /** Box + label scale: sm / md (default) / lg. */
+  size?: ControlSize;
 }
 
 /**
@@ -47,6 +57,7 @@ interface CheckboxProps extends Omit<ComponentProps<"input">, "type"> {
 export function Checkbox({
   indeterminate = false,
   label,
+  size = "md",
   checked,
   defaultChecked,
   onChange,
@@ -55,6 +66,7 @@ export function Checkbox({
   id,
   ...props
 }: CheckboxProps) {
+  const sizes = sizeClasses[size];
   const reactId = useId();
   const inputId = id ?? reactId;
   const ref = useRef<HTMLInputElement>(null);
@@ -95,7 +107,8 @@ export function Checkbox({
       <span
         aria-hidden="true"
         className={cn(
-          "text-fg3 rounded-2 flex size-4 shrink-0 items-center justify-center border-2 border-solid transition-colors",
+          "text-fg3 rounded-2 flex shrink-0 items-center justify-center border-2 border-solid transition-colors",
+          sizes.box,
           "peer-focus-visible:ring-primary-bg2 peer-focus-visible:ring-2 peer-focus-visible:ring-offset-2",
           disabled
             ? filled
@@ -109,7 +122,9 @@ export function Checkbox({
         {indeterminate ? <MinusIcon /> : isChecked ? <CheckIcon /> : null}
       </span>
 
-      {label != null && <span className="text-fg1 text-sm tracking-[-0.02em]">{label}</span>}
+      {label != null && (
+        <span className={cn("text-fg1 tracking-[-0.02em]", sizes.label)}>{label}</span>
+      )}
     </label>
   );
 }

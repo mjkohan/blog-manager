@@ -2,14 +2,23 @@ import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
+import type { ControlSize } from "../control-size";
 import { Spinner } from "../Spinner";
 
-interface MenuItemProps extends ComponentProps<"button"> {
+interface MenuItemProps extends Omit<ComponentProps<"button">, "size"> {
   /** Leading icon (uses `currentColor`). */
   icon?: ReactNode;
   /** Render a non-interactive "loading more" row (spinner + muted label). */
   loading?: boolean;
+  /** Row height/text scale: sm / md (default) / lg. */
+  size?: ControlSize;
 }
+
+const sizeClasses: Record<ControlSize, string> = {
+  sm: "min-h-9 px-2.5 py-1.5 text-sm",
+  md: "min-h-10 px-3 py-2 text-sm",
+  lg: "min-h-12 px-4 py-2.5 text-base",
+};
 
 /**
  * Menu row (Figma "DropDownElement"/"DropDownContent"). Interactive item with
@@ -20,6 +29,7 @@ interface MenuItemProps extends ComponentProps<"button"> {
 export function MenuItem({
   icon,
   loading,
+  size = "md",
   children,
   className,
   disabled,
@@ -32,7 +42,8 @@ export function MenuItem({
       disabled={disabled || loading}
       aria-disabled={loading || undefined}
       className={cn(
-        "rounded-3 flex w-full items-center gap-2 px-3 py-2 text-start text-sm font-normal tracking-[-0.02em] transition-colors outline-none",
+        "rounded-3 flex w-full items-center gap-2 text-start font-normal tracking-[-0.02em] transition-colors outline-none",
+        sizeClasses[size],
         loading
           ? "text-fg2 cursor-default"
           : disabled

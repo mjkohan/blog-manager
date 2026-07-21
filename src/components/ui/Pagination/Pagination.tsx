@@ -5,6 +5,7 @@ import type { ComponentProps, ReactNode } from "react";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { cn } from "@/lib/utils";
 
+import type { ControlSize } from "../control-size";
 import { getPaginationRange } from "./pagination-range";
 
 function ChevronLeft() {
@@ -48,18 +49,27 @@ interface PaginationProps extends Omit<ComponentProps<"nav">, "onChange"> {
   siblingCount?: number;
   /** Disable the whole control. */
   disabled?: boolean;
+  /** Cell/bar scale: sm / md (default) / lg. */
+  size?: ControlSize;
 }
 
 const cellBase =
-  "inline-flex size-8 min-w-8 items-center justify-center rounded-3 px-1 text-sm font-semibold tracking-[-0.02em] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-bg2 focus-visible:ring-offset-1 disabled:cursor-not-allowed";
+  "inline-flex items-center justify-center rounded-3 px-1 font-semibold tracking-[-0.02em] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-bg2 focus-visible:ring-offset-1 disabled:cursor-not-allowed";
+
+const sizeClasses: Record<ControlSize, { bar: string; cell: string }> = {
+  sm: { bar: "h-9", cell: "size-7 min-w-7 text-xs" },
+  md: { bar: "h-10", cell: "size-8 min-w-8 text-sm" },
+  lg: { bar: "h-12", cell: "size-10 min-w-10 text-base" },
+};
 
 /**
  * Pagination (Figma "pagination"). Bordered bar of page cells with prev/next
  * chevrons and collapsing ellipsis. Controlled: pass `page` + `totalPages` and
  * either `onPageChange` (buttons) or `getHref` (links, for URL-based server
  * pagination). Selected cell uses primary-bg2 / fg3; others fg1 with
- * hover/press; disabled uses fg1-disable. md radius, 40px tall. Siblings collapse
- * to 0 below `sm` so the bar never overflows narrow (<320px) screens.
+ * hover/press; disabled uses fg1-disable. md radius; sizes sm/md/lg via `size`.
+ * Siblings collapse to 0 below `sm` so the bar never overflows narrow (<320px)
+ * screens.
  */
 export function Pagination({
   page,
@@ -68,12 +78,14 @@ export function Pagination({
   getHref,
   siblingCount = 1,
   disabled = false,
+  size = "md",
   className,
   ...props
 }: PaginationProps) {
   const isMobile = useMediaQuery("(max-width: 639px)");
   const effectiveSiblings = isMobile ? 0 : siblingCount;
   const items = getPaginationRange(page, totalPages, effectiveSiblings);
+  const sizes = sizeClasses[size];
 
   const renderCell = ({
     key,
@@ -92,6 +104,7 @@ export function Pagination({
   }) => {
     const classes = cn(
       cellBase,
+      sizes.cell,
       active
         ? cellDisabled
           ? "bg-primary-bg2-disable text-fg3"
@@ -134,7 +147,8 @@ export function Pagination({
     <nav
       aria-label="Pagination"
       className={cn(
-        "bg-bg1 rounded-3 inline-flex h-10 max-w-full items-center gap-2 border p-1",
+        "bg-bg1 rounded-3 inline-flex max-w-full items-center gap-2 border p-1",
+        sizes.bar,
         disabled ? "border-st2-disable" : "border-st2",
         className,
       )}
@@ -153,7 +167,7 @@ export function Pagination({
           <span
             key={`ellipsis-${index}`}
             aria-hidden="true"
-            className="text-fg2 inline-flex size-8 items-center justify-center text-sm"
+            className={cn("text-fg2 inline-flex items-center justify-center", sizes.cell)}
           >
             …
           </span>

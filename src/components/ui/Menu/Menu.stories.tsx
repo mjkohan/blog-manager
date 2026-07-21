@@ -39,3 +39,23 @@ export const LoadingMore: Story = {
     </Menu>
   ),
 };
+
+/** sm / md / lg row scale (set per MenuItem). */
+export const Sizes: Story = {
+  render: (args) => (
+    <div className="flex flex-col gap-3">
+      <Menu {...args}>
+        <MenuItem size="sm">Small</MenuItem>
+        <MenuItem size="sm">Small</MenuItem>
+      </Menu>
+      <Menu {...args}>
+        <MenuItem size="md">Medium</MenuItem>
+        <MenuItem size="md">Medium</MenuItem>
+      </Menu>
+      <Menu {...args}>
+        <MenuItem size="lg">Large</MenuItem>
+        <MenuItem size="lg">Large</MenuItem>
+      </Menu>
+    </div>
+  ),
+};

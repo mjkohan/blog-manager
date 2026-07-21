@@ -2,7 +2,9 @@ import type { ComponentProps, ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-interface SidebarItemProps extends Omit<ComponentProps<"button">, "type"> {
+import type { ControlSize } from "../control-size";
+
+interface SidebarItemProps extends Omit<ComponentProps<"button">, "type" | "size"> {
   /** Active/current item — teal fill + aria-current. */
   selected?: boolean;
   /** Leading icon (uses `currentColor`). */
@@ -11,10 +13,18 @@ interface SidebarItemProps extends Omit<ComponentProps<"button">, "type"> {
   description?: ReactNode;
   /** Render an `<a>` (navigation) instead of a `<button>`. */
   href?: string;
+  /** Padding/label scale: sm / md (default) / lg. */
+  size?: ControlSize;
 }
 
 const base =
-  "flex w-full items-center gap-2 rounded-none p-2 text-start text-base font-semibold leading-6 tracking-[-0.02em] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-bg2 focus-visible:ring-inset";
+  "flex w-full items-center gap-2 rounded-none text-start font-semibold leading-6 tracking-[-0.02em] outline-none transition-colors focus-visible:ring-2 focus-visible:ring-primary-bg2 focus-visible:ring-inset";
+
+const sizeClasses: Record<ControlSize, string> = {
+  sm: "p-1.5 text-sm",
+  md: "p-2 text-base",
+  lg: "p-3 text-lg",
+};
 
 /**
  * Sidebar navigation item (Figma "_item/sidebar/Menu"). Selected = primary-bg1
@@ -27,12 +37,14 @@ export function SidebarItem({
   icon,
   description,
   href,
+  size = "md",
   children,
   className,
   ...rest
 }: SidebarItemProps) {
   const classes = cn(
     base,
+    sizeClasses[size],
     selected
       ? "bg-primary-bg1 text-primary-fg1 hover:bg-primary-bg1-hover hover:text-primary-fg1-hover"
       : "text-fg1 hover:bg-bg1-hover hover:text-fg1-hover active:bg-bg1-press active:text-fg1-press",

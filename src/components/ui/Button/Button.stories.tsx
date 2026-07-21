@@ -35,6 +35,7 @@ const meta = {
   },
   argTypes: {
     variant: { control: "inline-radio", options: ["primary", "danger", "secondary"] },
+    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
     loading: { control: "boolean" },
     disabled: { control: "boolean" },
   },
@@ -73,4 +74,21 @@ export const Loading: Story = {
 
 export const Disabled: Story = {
   args: { disabled: true },
+};
+
+/** sm (36) / md (40) / lg (48) heights — pick per breakpoint in layouts. */
+export const Sizes: Story = {
+  render: (args) => (
+    <div className="flex items-center gap-4">
+      <Button {...args} size="sm">
+        Small
+      </Button>
+      <Button {...args} size="md">
+        Medium
+      </Button>
+      <Button {...args} size="lg">
+        Large
+      </Button>
+    </div>
+  ),
 };

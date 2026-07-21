@@ -11,6 +11,7 @@ const meta = {
   },
   argTypes: {
     selected: { control: "boolean" },
+    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
   },
   decorators: [
     (Story) => (
@@ -41,6 +42,17 @@ export const List: Story = {
       <SidebarItem>Title</SidebarItem>
       <SidebarItem selected>Title</SidebarItem>
       <SidebarItem>Title</SidebarItem>
+    </nav>
+  ),
+};
+
+/** sm / md / lg padding + label scale. */
+export const Sizes: Story = {
+  render: () => (
+    <nav className="flex flex-col gap-2">
+      <SidebarItem size="sm">Small</SidebarItem>
+      <SidebarItem size="md">Medium</SidebarItem>
+      <SidebarItem size="lg">Large</SidebarItem>
     </nav>
   ),
 };

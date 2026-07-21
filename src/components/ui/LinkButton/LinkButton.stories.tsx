@@ -11,6 +11,7 @@ const meta = {
   },
   argTypes: {
     disabled: { control: "boolean" },
+    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
   },
 } satisfies Meta<typeof LinkButton>;
 
@@ -33,6 +34,17 @@ export const States: Story = {
     <div className="flex items-center gap-6">
       <LinkButton>button</LinkButton>
       <LinkButton disabled>button</LinkButton>
+    </div>
+  ),
+};
+
+/** sm / md / lg label scale. */
+export const Sizes: Story = {
+  render: () => (
+    <div className="flex items-center gap-6">
+      <LinkButton size="sm">Small</LinkButton>
+      <LinkButton size="md">Medium</LinkButton>
+      <LinkButton size="lg">Large</LinkButton>
     </div>
   ),
 };

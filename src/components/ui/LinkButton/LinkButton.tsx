@@ -2,19 +2,30 @@ import type { ComponentProps } from "react";
 
 import { cn } from "@/lib/utils";
 
-type ButtonProps = ComponentProps<"button"> & { href?: undefined };
+import type { ControlSize } from "../control-size";
+
+type SizedProps = { size?: ControlSize };
+type ButtonProps = Omit<ComponentProps<"button">, "size"> & { href?: undefined };
 type AnchorProps = ComponentProps<"a"> & { href: string };
-type LinkButtonProps = (ButtonProps | AnchorProps) & { disabled?: boolean };
+type LinkButtonProps = (ButtonProps | AnchorProps) & SizedProps & { disabled?: boolean };
+
+const sizeClasses: Record<ControlSize, string> = {
+  sm: "text-xs",
+  md: "text-sm",
+  lg: "text-base",
+};
 
 /**
  * LinkButton (Figma "LinkButton"). Text-only action styled as a link: no fill,
  * info-blue label with hover/press/disable states. Renders a `<button>` by
  * default, or an `<a>` when `href` is set (e.g. wrapping a Next `Link` via
- * `asChild`-style usage is not needed — pass `href` directly). Inter 600 / 14 / 20.
+ * `asChild`-style usage is not needed — pass `href` directly). Sizes sm / md
+ * (default) / lg scale the label. Inter 600.
  */
-export function LinkButton({ className, disabled, ...props }: LinkButtonProps) {
+export function LinkButton({ className, disabled, size = "md", ...props }: LinkButtonProps) {
   const classes = cn(
-    "inline-flex items-center justify-center rounded-2 bg-transparent text-center text-sm font-semibold tracking-[-0.02em] outline-none transition-colors",
+    "inline-flex items-center justify-center rounded-2 bg-transparent text-center font-semibold tracking-[-0.02em] outline-none transition-colors",
+    sizeClasses[size],
     "focus-visible:ring-info-fg1 focus-visible:ring-2 focus-visible:ring-offset-2",
     disabled
       ? "text-info-fg1-disable pointer-events-none cursor-not-allowed"

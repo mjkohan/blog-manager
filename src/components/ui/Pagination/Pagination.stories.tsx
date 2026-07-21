@@ -13,6 +13,7 @@ const meta = {
   },
   argTypes: {
     disabled: { control: "boolean" },
+    size: { control: "inline-radio", options: ["sm", "md", "lg"] },
   },
 } satisfies Meta<typeof Pagination>;
 
@@ -43,4 +44,15 @@ export const Interactive: Story = {
     const [page, setPage] = useState(1);
     return <Pagination {...args} page={page} onPageChange={setPage} />;
   },
+};
+
+/** sm / md / lg cell + bar scale. */
+export const Sizes: Story = {
+  render: (args) => (
+    <div className="flex flex-col items-start gap-3">
+      <Pagination {...args} size="sm" />
+      <Pagination {...args} size="md" />
+      <Pagination {...args} size="lg" />
+    </div>
+  ),
 };

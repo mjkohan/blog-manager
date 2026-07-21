@@ -2,7 +2,10 @@ import type { ComponentProps } from "react";
 
 import { cn } from "@/lib/utils";
 
-export type InputSize = "sm" | "md" | "lg";
+import type { ControlSize } from "../control-size";
+
+/** @deprecated Use {@link ControlSize}. Kept as an alias for existing imports. */
+export type InputSize = ControlSize;
 
 interface InputProps extends Omit<ComponentProps<"input">, "size"> {
   /** Control height: sm = 36px, md = 40px, lg = 48px. Defaults to md. */
@@ -11,10 +14,10 @@ interface InputProps extends Omit<ComponentProps<"input">, "size"> {
   error?: boolean;
 }
 
-const sizeClasses: Record<InputSize, string> = {
-  sm: "h-9",
-  md: "h-10",
-  lg: "h-12",
+const sizeClasses: Record<ControlSize, string> = {
+  sm: "h-9 text-sm",
+  md: "h-10 text-sm",
+  lg: "h-12 text-base",
 };
 
 /**
