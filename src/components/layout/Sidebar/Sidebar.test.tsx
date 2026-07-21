@@ -17,8 +17,8 @@ describe("Sidebar", () => {
   it("renders the two nav links with their routes", () => {
     usePathnameMock.mockReturnValue("/articles");
     render(<Sidebar />);
-    expect(screen.getByRole("link", { name: "All articles" })).toHaveAttribute("href", "/articles");
-    expect(screen.getByRole("link", { name: "New article" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "All Articles" })).toHaveAttribute("href", "/articles");
+    expect(screen.getByRole("link", { name: "New Article" })).toHaveAttribute(
       "href",
       "/articles/create",
     );
@@ -27,20 +27,20 @@ describe("Sidebar", () => {
   it("marks the list as active on /articles and its paged paths", () => {
     usePathnameMock.mockReturnValue("/articles/page/2");
     render(<Sidebar />);
-    expect(screen.getByRole("link", { name: "All articles" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "All Articles" })).toHaveAttribute(
       "aria-current",
       "page",
     );
-    expect(screen.getByRole("link", { name: "New article" })).not.toHaveAttribute("aria-current");
+    expect(screen.getByRole("link", { name: "New Article" })).not.toHaveAttribute("aria-current");
   });
 
   it("marks New article as active on /articles/create", () => {
     usePathnameMock.mockReturnValue("/articles/create");
     render(<Sidebar />);
-    expect(screen.getByRole("link", { name: "New article" })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: "New Article" })).toHaveAttribute(
       "aria-current",
       "page",
     );
-    expect(screen.getByRole("link", { name: "All articles" })).not.toHaveAttribute("aria-current");
+    expect(screen.getByRole("link", { name: "All Articles" })).not.toHaveAttribute("aria-current");
   });
 });

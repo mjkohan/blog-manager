@@ -2,7 +2,6 @@
 
 import { usePathname } from "next/navigation";
 
-import { DocumentIcon, PlusIcon } from "@/components/ui/Icon";
 import { SidebarItem } from "@/components/ui/SidebarItem";
 import { ROUTES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -27,28 +26,13 @@ export function Sidebar({ onNavigate, className }: SidebarProps) {
   const onCreate = pathname.startsWith(ROUTES.articlesCreate);
 
   return (
-    <div className={cn("bg-bg1 flex h-full flex-col", className)}>
-      <div className="border-st3 flex h-16 shrink-0 items-center border-b px-4">
-        <span className="text-fg1 text-base font-semibold tracking-[-0.02em]">Blog Manager</span>
-      </div>
-      <nav aria-label="Primary" className="flex flex-col gap-1 p-3">
-        <SidebarItem
-          href={ROUTES.articles}
-          selected={onList}
-          icon={<DocumentIcon />}
-          onClick={onNavigate}
-        >
-          All articles
-        </SidebarItem>
-        <SidebarItem
-          href={ROUTES.articlesCreate}
-          selected={onCreate}
-          icon={<PlusIcon />}
-          onClick={onNavigate}
-        >
-          New article
-        </SidebarItem>
-      </nav>
-    </div>
+    <nav aria-label="Primary" className={cn("bg-bg1 flex h-full flex-col p-3", className)}>
+      <SidebarItem href={ROUTES.articles} selected={onList} onClick={onNavigate}>
+        All Articles
+      </SidebarItem>
+      <SidebarItem href={ROUTES.articlesCreate} selected={onCreate} onClick={onNavigate}>
+        New Article
+      </SidebarItem>
+    </nav>
   );
 }

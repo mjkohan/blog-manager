@@ -43,30 +43,28 @@ export function Shell({ userName, actions, children }: ShellProps) {
 
   return (
     <div className="bg-bg2 flex min-h-dvh flex-col">
+      <Header
+        userName={userName}
+        title="Arvancloud Challenge"
+        actions={actions}
+        leading={
+          <button
+            type="button"
+            aria-label="Open navigation menu"
+            aria-expanded={drawerOpen}
+            onClick={() => setDrawerOpen(true)}
+            className="text-fg1 hover:bg-bg1-hover focus-visible:ring-primary-bg2 inline-flex size-10 shrink-0 items-center justify-center rounded-lg outline-none focus-visible:ring-2 md:hidden"
+          >
+            <MenuIcon />
+          </button>
+        }
+      />
+
       <div className="flex flex-1">
         <aside className="border-st3 hidden w-64 shrink-0 border-e md:block">
           <Sidebar />
         </aside>
-
-        <div className="flex min-w-0 flex-1 flex-col">
-          <Header
-            userName={userName}
-            title="Arvancloud Challenge"
-            actions={actions}
-            leading={
-              <button
-                type="button"
-                aria-label="Open navigation menu"
-                aria-expanded={drawerOpen}
-                onClick={() => setDrawerOpen(true)}
-                className="text-fg1 hover:bg-bg1-hover focus-visible:ring-primary-bg2 inline-flex size-10 shrink-0 items-center justify-center rounded-lg outline-none focus-visible:ring-2 md:hidden"
-              >
-                <MenuIcon />
-              </button>
-            }
-          />
-          <main className="flex-1 overflow-y-auto p-4 sm:p-6">{children}</main>
-        </div>
+        <main className="min-w-0 flex-1 overflow-y-auto p-4 sm:p-6">{children}</main>
       </div>
 
       <dialog
@@ -79,7 +77,7 @@ export function Shell({ userName, actions, children }: ShellProps) {
         onClick={(event) => {
           if (event.target === event.currentTarget) setDrawerOpen(false);
         }}
-        className="m-0 h-dvh max-h-dvh w-64 max-w-[80vw] p-0 backdrop:bg-gray-100/50 md:hidden"
+        className="drawer-dialog m-0 h-dvh max-h-dvh w-64 max-w-[80vw] p-0 md:hidden"
       >
         <Sidebar onNavigate={() => setDrawerOpen(false)} />
       </dialog>

@@ -25,3 +25,44 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
+
+/* Mobile navigation drawer (Shell): native <dialog> that slides in from the
+   inline-start edge with a fading backdrop. `allow-discrete` + `@starting-style`
+   animate the enter/exit even though `display`/`overlay` are discrete props. */
+.drawer-dialog {
+  transform: translateX(-100%);
+  transition:
+    transform 300ms ease,
+    overlay 300ms ease allow-discrete,
+    display 300ms ease allow-discrete;
+}
+.drawer-dialog[open] {
+  transform: translateX(0);
+}
+@starting-style {
+  .drawer-dialog[open] {
+    transform: translateX(-100%);
+  }
+}
+.drawer-dialog::backdrop {
+  background-color: rgb(0 0 0 / 0.5);
+  opacity: 0;
+  transition:
+    opacity 300ms ease,
+    overlay 300ms ease allow-discrete,
+    display 300ms ease allow-discrete;
+}
+.drawer-dialog[open]::backdrop {
+  opacity: 1;
+}
+@starting-style {
+  .drawer-dialog[open]::backdrop {
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .drawer-dialog,
+  .drawer-dialog::backdrop {
+    transition: none;
+  }
+}
