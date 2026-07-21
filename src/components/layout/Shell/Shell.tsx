@@ -77,7 +77,7 @@ export function Shell({ userName, actions, children }: ShellProps) {
         onClick={(event) => {
           if (event.target === event.currentTarget) setDrawerOpen(false);
         }}
-        className="drawer-dialog m-0 h-dvh max-h-dvh w-64 max-w-[80vw] p-0 md:hidden"
+        className="drawer-dialog w-64 max-w-[80vw] p-0 md:hidden"
       >
         <Sidebar onNavigate={() => setDrawerOpen(false)} />
       </dialog>
