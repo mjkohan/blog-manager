@@ -57,9 +57,9 @@ export function RowActions({ row, onDelete, deleting = false }: RowActionsProps)
         aria-expanded={menuOpen}
         aria-controls={menuOpen ? menuId : undefined}
         onClick={() => setMenuOpen((open) => !open)}
-        className="text-fg2 hover:bg-bg1-hover hover:text-fg1 focus-visible:ring-primary-bg2 border-st3 inline-flex size-8 shrink-0 items-center justify-center rounded-full border outline-none focus-visible:ring-2"
+        className="text-fg2 hover:bg-bg1-hover hover:text-fg1 focus-visible:ring-primary-bg2 border-st2 inline-flex size-10 shrink-0 items-center justify-center rounded-lg border outline-none focus-visible:ring-2"
       >
-        <EllipsisIcon className="size-4" />
+        <EllipsisIcon className="size-5" />
       </button>
 
       {menuOpen && (

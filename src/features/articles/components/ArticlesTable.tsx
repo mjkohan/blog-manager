@@ -12,10 +12,10 @@ interface ArticlesTableProps {
 
 const COLUMNS = ["#", "Title", "Author", "Tags", "Excerpt", "Created", ""] as const;
 
-/** Small rounded index chip shown in the `#` column (matches the design). */
+/** Index chip in the `#` column: 32px square, sm radius, bg2, 12/16 semibold fg1. */
 function IndexBadge({ value }: { value: number }) {
   return (
-    <span className="bg-bg2 text-fg1 inline-flex min-w-6 items-center justify-center rounded-md px-1.5 py-0.5 text-xs font-semibold">
+    <span className="bg-bg2 text-fg1 rounded-2 inline-flex size-8 items-center justify-center text-xs font-semibold tracking-[-0.02em]">
       {value}
     </span>
   );
@@ -23,7 +23,7 @@ function IndexBadge({ value }: { value: number }) {
 
 function TagList({ tags }: { tags: string[] }) {
   if (tags.length === 0) return <span className="text-fg2">—</span>;
-  return <span className="text-fg2">{tags.join(", ")}</span>;
+  return <>{tags.join(", ")}</>;
 }
 
 /**
@@ -56,8 +56,8 @@ export function ArticlesTable({ rows, onDelete, deletingId }: ArticlesTableProps
                   scope="col"
                   className={cn(
                     "text-fg1 px-4 text-start align-middle text-lg leading-6 font-semibold tracking-[-0.02em] whitespace-nowrap",
-                    index === 0 && "rounded-s-md",
-                    index === COLUMNS.length - 1 && "rounded-e-md text-end",
+                    index === 0 && "text-center",
+                    index === COLUMNS.length - 1 && "text-end",
                   )}
                 >
                   {col || <span className="sr-only">Actions</span>}
@@ -68,20 +68,22 @@ export function ArticlesTable({ rows, onDelete, deletingId }: ArticlesTableProps
           <tbody>
             {rows.map((row) => (
               <tr key={row.id} className="border-st3 hover:bg-bg2/50 border-b transition-colors">
-                <td className="px-4 py-3 align-middle">
+                <td className="px-4 py-3 text-center align-middle">
                   <IndexBadge value={row.id} />
                 </td>
-                <td className="text-fg1 max-w-[220px] truncate px-4 py-3 align-middle font-semibold">
+                <td className="text-fg1 max-w-[220px] truncate px-4 py-3 align-middle text-base leading-6 font-semibold tracking-[-0.02em]">
                   {row.title}
                 </td>
-                <td className="text-fg2 px-4 py-3 align-middle whitespace-nowrap">@{row.author}</td>
-                <td className="max-w-[160px] truncate px-4 py-3 align-middle">
+                <td className="text-fg1 px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em] whitespace-nowrap">
+                  @{row.author}
+                </td>
+                <td className="text-fg1 max-w-[160px] truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   <TagList tags={row.tags} />
                 </td>
-                <td className="text-fg2 max-w-[280px] truncate px-4 py-3 align-middle">
+                <td className="text-fg1 max-w-[280px] truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   {row.excerpt}
                 </td>
-                <td className="text-fg2 px-4 py-3 align-middle whitespace-nowrap">
+                <td className="text-fg1 px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em] whitespace-nowrap">
                   {row.createdAt}
                 </td>
                 <td className="px-4 py-3 align-middle">
