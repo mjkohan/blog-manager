@@ -23,4 +23,5 @@ export const ROUTES = {
   home: "/",
   login: "/login",
   register: "/register",
+  articles: "/articles",
 } as const;

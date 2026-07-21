@@ -5,15 +5,23 @@ import { COOKIE, ROUTES } from "@/lib/constants";
 const PUBLIC_PATHS = new Set<string>([ROUTES.login, ROUTES.register]);
 
 /**
- * Route guard. Auth = presence of the httpOnly `accessToken` cookie.
+ * Route guard (Next 16 Proxy — the renamed Middleware). Auth = presence of the
+ * httpOnly `accessToken` cookie.
+ * - Root `/` → /articles when authed, /login otherwise.
  * - Unauthenticated request to a protected route → redirect to /login.
- * - Authenticated request to /login or /register → redirect home.
+ * - Authenticated request to /login or /register → redirect to /articles.
  * The matcher below excludes Next internals, static assets, and API routes.
  */
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isAuthed = Boolean(request.cookies.get(COOKIE.accessToken)?.value);
   const isPublic = PUBLIC_PATHS.has(pathname);
+
+  if (pathname === ROUTES.home) {
+    const url = request.nextUrl.clone();
+    url.pathname = isAuthed ? ROUTES.articles : ROUTES.login;
+    return NextResponse.redirect(url);
+  }
 
   if (!isAuthed && !isPublic) {
     const url = request.nextUrl.clone();
@@ -23,7 +31,7 @@ export function middleware(request: NextRequest) {
 
   if (isAuthed && isPublic) {
     const url = request.nextUrl.clone();
-    url.pathname = ROUTES.home;
+    url.pathname = ROUTES.articles;
     return NextResponse.redirect(url);
   }
 
