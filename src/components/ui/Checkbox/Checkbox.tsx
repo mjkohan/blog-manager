@@ -83,7 +83,9 @@ export function Checkbox({
     <label
       htmlFor={inputId}
       className={cn(
-        "group inline-flex items-center gap-2",
+        // `relative` anchors the visually-hidden (absolutely positioned) input to
+        // the label, so focusing it never scroll-jumps the page/scroll container.
+        "group relative inline-flex items-center gap-2",
         disabled ? "cursor-not-allowed" : "cursor-pointer",
         className,
       )}
