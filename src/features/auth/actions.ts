@@ -43,8 +43,9 @@ export async function loginAction(
     return { error: GENERIC_ERROR };
   }
 
-  // Outside try/catch: redirect() throws NEXT_REDIRECT by design.
-  redirect(ROUTES.home);
+  // Outside try/catch: redirect() throws NEXT_REDIRECT by design. Go straight to
+  // the list (not "/") so we don't bounce through the proxy's home redirect.
+  redirect(ROUTES.articles);
 }
 
 /**

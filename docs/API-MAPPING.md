@@ -91,12 +91,12 @@ All responses are validated with Zod (`features/articles/types.ts`).
 
 - **Login** (`features/auth/actions.ts › loginAction`, a Server Action):
   validate with Zod → `login()` → `setSession()` writes httpOnly
-  `accessToken` / `refreshToken` cookies → `redirect("/")`.
+  `accessToken` / `refreshToken` cookies → `redirect("/articles")`.
   Bad credentials (HTTP 400/401) return `{ error }` → surfaced as a
   "Sign-in Failed!" toast; no redirect.
 - **Session read** (`getCurrentUser()`, server-only): reads the cookie → `getMe`.
   On 401 it refreshes once (`/auth/refresh`), re-sets cookies, and retries.
-- **Route guard** (`middleware.ts`): auth = presence of the `accessToken` cookie.
+- **Route guard** (`proxy.ts`, Next 16's renamed Middleware): auth = presence of the `accessToken` cookie.
   Unauthenticated → `/login`; authenticated on `/login`/`/register` → `/`.
 - **Logout** (`logoutAction`): `clearSession()` → `redirect("/login")`.
 
