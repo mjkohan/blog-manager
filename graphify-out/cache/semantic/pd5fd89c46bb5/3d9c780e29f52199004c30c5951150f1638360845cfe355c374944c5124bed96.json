@@ -1,0 +1,186 @@
+{
+  "nodes": [
+    {
+      "id": "docs_design_system_design_system",
+      "label": "Design System",
+      "file_type": "document",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_design_system_tokens",
+      "label": "Design Tokens (tokens.css / @theme)",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_design_system_inverted_ramps",
+      "label": "Inverted color ramps (100=darkest, 0=white)",
+      "file_type": "rationale",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_design_system_semantic_tokens",
+      "label": "Semantic state tokens",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_design_system_control_size",
+      "label": "ControlSize (sm/md/lg shared type)",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_design_system_cn_helper",
+      "label": "cn() class composer (clsx + tailwind-merge)",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_design_system_component_convention",
+      "label": "Component authoring convention (presentational, all states)",
+      "file_type": "rationale",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_design_system_responsive_by_default",
+      "label": "Responsive by default (fluid base UI)",
+      "file_type": "rationale",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_design_system_storybook",
+      "label": "Storybook (nextjs-vite, a11y addon)",
+      "file_type": "concept",
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_design_system_tokens",
+      "target": "docs_design_system_semantic_tokens",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_design_system_tokens",
+      "target": "docs_design_system_inverted_ramps",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_design_system_component_convention",
+      "target": "docs_design_system_cn_helper",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_design_system_component_convention",
+      "target": "docs_design_system_control_size",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_design_system_component_convention",
+      "target": "docs_design_system_responsive_by_default",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_design_system_component_convention",
+      "target": "docs_design_system_storybook",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_design_system_control_size",
+      "target": "docs_design_system_responsive_by_default",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_design_system_semantic_tokens",
+      "target": "docs_api_mapping_zod_validation",
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.6,
+      "source_file": "docs/DESIGN-SYSTEM.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": []
+}

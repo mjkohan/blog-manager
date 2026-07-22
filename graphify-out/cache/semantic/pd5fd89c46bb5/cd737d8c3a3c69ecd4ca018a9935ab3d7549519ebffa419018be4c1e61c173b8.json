@@ -1,0 +1,279 @@
+{
+  "nodes": [
+    {
+      "id": "docs_api_mapping_dummyjson",
+      "label": "DummyJSON API Mapping",
+      "file_type": "document",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_api_client",
+      "label": "api-client (single fetch wrapper)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_get_articles",
+      "label": "getArticles (server loader)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_posts_api",
+      "label": "posts-api (getPosts/getPost/getTagList/createPost/updatePost/deletePost)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_get_username",
+      "label": "getUsername (author resolution, cached per userId)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_slug_resolution",
+      "label": "Slug \u2192 id resolution (getPostIdBySlug)",
+      "file_type": "rationale",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_optimistic_delete_no_refetch",
+      "label": "Optimistic delete, no refetch",
+      "file_type": "rationale",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_synthetic_date",
+      "label": "Synthetic stable date (derived from post id)",
+      "file_type": "rationale",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_excerpt",
+      "label": "Excerpt (first 20 words of body)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_auth_flow",
+      "label": "Session & auth flow (login/refresh/logout)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_httponly_cookie_session",
+      "label": "httpOnly cookie session (session.ts)",
+      "file_type": "rationale",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_username_auth",
+      "label": "Username-based auth (relabel Email \u2192 Username)",
+      "file_type": "rationale",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "docs_api_mapping_zod_validation",
+      "label": "Zod response validation (articles/types.ts)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "docs_api_mapping_get_articles",
+      "target": "docs_api_mapping_posts_api",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping_get_articles",
+      "target": "docs_api_mapping_get_username",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping_get_articles",
+      "target": "docs_api_mapping_synthetic_date",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping_get_articles",
+      "target": "docs_api_mapping_excerpt",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping_posts_api",
+      "target": "docs_api_mapping_api_client",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping_posts_api",
+      "target": "docs_api_mapping_zod_validation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping_slug_resolution",
+      "target": "docs_api_mapping_posts_api",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping_auth_flow",
+      "target": "docs_api_mapping_api_client",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping_auth_flow",
+      "target": "docs_api_mapping_httponly_cookie_session",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping_httponly_cookie_session",
+      "target": "readme_authentication",
+      "relation": "rationale_for",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "article_list_read_pipeline",
+      "label": "Article list read pipeline (server loader \u2192 posts-api/getUsername \u2192 view model)",
+      "nodes": [
+        "docs_api_mapping_get_articles",
+        "docs_api_mapping_posts_api",
+        "docs_api_mapping_get_username",
+        "docs_api_mapping_synthetic_date"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "docs/API-MAPPING.md"
+    },
+    {
+      "id": "auth_session_flow",
+      "label": "Auth session flow (login \u2192 httpOnly cookies \u2192 route guard)",
+      "nodes": [
+        "readme_authentication",
+        "docs_api_mapping_auth_flow",
+        "docs_api_mapping_httponly_cookie_session",
+        "readme_route_guard_middleware"
+      ],
+      "relation": "participate_in",
+      "confidence": "EXTRACTED",
+      "confidence_score": 0.9,
+      "source_file": "docs/API-MAPPING.md"
+    }
+  ]
+}
