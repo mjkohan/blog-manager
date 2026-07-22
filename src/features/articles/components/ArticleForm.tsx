@@ -1,6 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useId } from "react";
 import { Controller, useForm } from "react-hook-form";
 
@@ -8,6 +9,7 @@ import { Button } from "@/components/ui/Button";
 import { Field } from "@/components/ui/Field";
 import { Section } from "@/components/ui/Section";
 import { Textarea } from "@/components/ui/Textarea";
+import { ROUTES } from "@/lib/constants";
 
 import { useSubmitArticle, type SubmitTarget } from "../hooks/useArticleMutations";
 import { articleFormSchema, type ArticleFormValues } from "../types";
@@ -31,6 +33,7 @@ interface ArticleFormProps {
  */
 export function ArticleForm({ tagOptions, defaultValues, target }: ArticleFormProps) {
   const bodyId = useId();
+  const router = useRouter();
   const mutation = useSubmitArticle(target);
 
   const {
@@ -74,14 +77,21 @@ export function ArticleForm({ tagOptions, defaultValues, target }: ArticleFormPr
             <Textarea id={bodyId} rows={6} {...register("body")} />
           </div>
 
-          <Button
-            type="submit"
-            className="mt-2 self-start"
-            disabled={!isValid}
-            loading={mutation.isPending}
-          >
-            Submit
-          </Button>
+          <div className="mt-2 flex items-center gap-3">
+            <Button type="submit" disabled={!isValid} loading={mutation.isPending}>
+              Submit
+            </Button>
+            {target.mode === "edit" && (
+              <Button
+                type="button"
+                variant="secondary"
+                disabled={mutation.isPending}
+                onClick={() => router.push(ROUTES.articles)}
+              >
+                Cancel
+              </Button>
+            )}
+          </div>
         </div>
       </Section>
 
