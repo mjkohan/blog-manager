@@ -2,9 +2,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import type { ReactNode } from "react";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import { ToastProvider } from "@/components/ui/Toaster";
+
+// Delete/create/edit call router.refresh(); stub the App Router in jsdom.
+vi.mock("next/navigation", () => ({
+  useRouter: () => ({ push: vi.fn(), refresh: vi.fn() }),
+}));
 
 import type { ArticleRow } from "../types";
 import { ArticlesList } from "./ArticlesList";

@@ -573,9 +573,9 @@
     "word_count": 185
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\lib\\utils.ts": {
-    "size": 1343,
-    "mtime_ns": 1784668342818347400,
-    "word_count": 189
+    "size": 1851,
+    "mtime_ns": 1784736421089954000,
+    "word_count": 265
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\stories\\Foundations.stories.tsx": {
     "size": 3187,
@@ -639,11 +639,11 @@
     "word_count": 6
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\docs\\API-MAPPING.md": {
-    "size": 9151,
-    "mtime_ns": 1784734936796305000,
-    "word_count": 933,
+    "size": 9922,
+    "mtime_ns": 1784736699791074000,
+    "word_count": 1047,
     "hashes": {
-      "docs/api-mapping.md": "cd737d8c3a3c69ecd4ca018a9935ab3d7549519ebffa419018be4c1e61c173b8"
+      "docs/api-mapping.md": "70a30849f31e292f4b24683b6302287ab52e3b69baaded08d9e36ea07cdd7377"
     }
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\proxy.ts": {
@@ -652,9 +652,9 @@
     "word_count": 167
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\app\\(dashboard)\\articles\\create\\page.tsx": {
-    "size": 976,
-    "mtime_ns": 1784734760810866400,
-    "word_count": 121
+    "size": 1011,
+    "mtime_ns": 1784736532353291900,
+    "word_count": 125
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\app\\(dashboard)\\articles\\edit\\[slug]\\page.tsx": {
     "size": 1134,
@@ -772,13 +772,13 @@
     "word_count": 312
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\articles\\components\\ArticlesList.test.tsx": {
-    "size": 2766,
-    "mtime_ns": 1784668944201914100,
-    "word_count": 284
+    "size": 2945,
+    "mtime_ns": 1784736544387619700,
+    "word_count": 309
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\articles\\components\\ArticlesList.tsx": {
-    "size": 1162,
-    "mtime_ns": 1784668803603807700,
+    "size": 1158,
+    "mtime_ns": 1784736669799141600,
     "word_count": 135
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\articles\\components\\ArticlesPagination.tsx": {
@@ -812,24 +812,24 @@
     "word_count": 111
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\articles\\getArticles.ts": {
-    "size": 1919,
-    "mtime_ns": 1784668450724399000,
-    "word_count": 264
+    "size": 1525,
+    "mtime_ns": 1784736444928271200,
+    "word_count": 202
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\articles\\hooks\\useArticleMutations.ts": {
-    "size": 2226,
-    "mtime_ns": 1784734709719757000,
-    "word_count": 295
+    "size": 3161,
+    "mtime_ns": 1784736718245498000,
+    "word_count": 392
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\articles\\hooks\\useArticles.ts": {
-    "size": 2343,
-    "mtime_ns": 1784668722885405700,
-    "word_count": 308
+    "size": 1958,
+    "mtime_ns": 1784736658107364700,
+    "word_count": 263
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\articles\\types.ts": {
-    "size": 3673,
-    "mtime_ns": 1784734630639425500,
-    "word_count": 466
+    "size": 4463,
+    "mtime_ns": 1784736461408199900,
+    "word_count": 590
   },
   "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\auth\\actions.ts": {
     "size": 2318,
@@ -910,5 +910,15 @@
     "size": 199,
     "mtime_ns": 1784571439780728200,
     "word_count": 27
+  },
+  "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\articles\\hooks\\useArticleOverlay.test.ts": {
+    "size": 1596,
+    "mtime_ns": 1784736823477907000,
+    "word_count": 208
+  },
+  "D:\\WorkSpace\\New folder\\blog-manager\\src\\features\\articles\\hooks\\useArticleOverlay.ts": {
+    "size": 2279,
+    "mtime_ns": 1784736482738893300,
+    "word_count": 298
   }
 }

@@ -26,13 +26,23 @@ All responses are validated with Zod (`features/articles/types.ts`).
   (`ArticleRow`). No client fetch, no loading flash, URL is the source of truth
   for the page. Both routes (`/articles`, `/articles/page/:page`) call
   `ArticlesView` → `getArticles`.
-- **Write (delete) = React Query, optimistic, _no refetch_.** The server rows are
-  seeded into a React Query cache (`useArticlesList`); `useDeleteArticle` removes
-  the row from the cache on `onMutate` and rolls back on error. It deliberately
-  **does not invalidate/refetch** — DummyJSON delete is simulated, so a refetch
-  would resurrect the row. Against a real backend you'd `invalidateQueries`
-  instead. This is the only intentional deviation from "always refetch after a
-  mutation," and it exists solely because the mock API doesn't persist.
+- **Writes (create / edit / delete) = optimistic + a session overlay + refresh.**
+  All three mutations layer their result onto the server rows through an in-memory
+  **overlay** (`useArticleOverlay`, held in the React Query cache): `deleted` is an
+  **array of ids** (multi-delete safe), `created` is prepended on page 1, and
+  `updated` is a per-id field patch. `applyOverlay(serverRows, overlay, page)`
+  reconciles the two so the list reflects the mutation on every page.
+  - **Why an overlay, not plain refetch.** DummyJSON writes are simulated — a
+    refetch would resurrect a deleted row, drop a created one, and revert an edit.
+    So each mutation updates the overlay optimistically (rolling back on error),
+    then calls `router.refresh()` to re-pull fresh server data; the overlay is
+    re-applied on top, keeping the table both **in sync and honest**.
+  - **Scope: session-only.** The overlay lives in JS memory (`staleTime`/`gcTime`
+    Infinity), so it survives client navigation + `router.refresh()` but is
+    **cleared on a hard browser reload** — after which the list shows raw
+    DummyJSON data again (deletes undone, creates gone, edits reverted). This is
+    the deliberate consequence of a non-persisting mock; against a real backend
+    you'd drop the overlay and `invalidateQueries` instead.
 
 ## Design ↔ API mismatches — article list (handled explicitly)
 

@@ -19,7 +19,7 @@ interface ArticlesListProps {
  */
 export function ArticlesList({ initialRows, page, totalPages }: ArticlesListProps) {
   const rows = useArticlesList(page, initialRows);
-  const deleteArticle = useDeleteArticle(page);
+  const deleteArticle = useDeleteArticle();
 
   return (
     <div className="flex flex-col gap-6">

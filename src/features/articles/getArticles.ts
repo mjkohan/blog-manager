@@ -3,7 +3,7 @@ import "server-only";
 import { cache } from "react";
 
 import { ARTICLES_PER_PAGE } from "@/lib/constants";
-import { excerpt, slugify } from "@/lib/utils";
+import { excerpt, slugify, syntheticDate } from "@/lib/utils";
 
 import { getPosts, getUsername } from "./api/posts-api";
 import type { ArticlesPage } from "./types";
@@ -21,17 +21,6 @@ const resolveUsername = cache(async (userId: number): Promise<string> => {
     return `user${userId}`;
   }
 });
-
-/**
- * Synthetic, stable "Created" date. The API has no created field (see
- * API-MAPPING); we derive a deterministic date from the post id so it never
- * shifts between renders. Purely presentational — not real post metadata.
- */
-const EPOCH = Date.UTC(2024, 0, 1);
-function syntheticDate(id: number): string {
-  const date = new Date(EPOCH + id * 86_400_000);
-  return date.toISOString().slice(0, 10);
-}
 
 /**
  * Resolve one list page into view-model rows plus pagination math. Fetches the

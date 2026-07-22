@@ -24,6 +24,17 @@ export function slugify(input: string): string {
 }
 
 /**
+ * Synthetic, **stable** "Created" date for a post. DummyJSON has no created
+ * field (see API-MAPPING), so we derive a deterministic date from the post id —
+ * it never shifts between renders. Pure so both the server list loader and the
+ * client optimistic overlay can produce the same value. Presentational only.
+ */
+const SYNTHETIC_EPOCH = Date.UTC(2024, 0, 1);
+export function syntheticDate(id: number): string {
+  return new Date(SYNTHETIC_EPOCH + id * 86_400_000).toISOString().slice(0, 10);
+}
+
+/**
  * First `words` words of `text`, with an ellipsis appended when it was truncated.
  * Used to derive the article Excerpt column from a post `body` (no excerpt field
  * in the API). Collapses runs of whitespace; empty input yields an empty string.

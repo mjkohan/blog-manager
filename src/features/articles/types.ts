@@ -108,6 +108,23 @@ export interface ArticleRow {
   createdAt: string;
 }
 
+/**
+ * Client-only, in-memory overlay of pending mutations applied on top of the
+ * server-rendered rows. DummyJSON writes are simulated (a refetch would resurrect
+ * a deleted row / drop a created one), so the overlay is what makes create /
+ * edit / delete look real across client navigation + `router.refresh()`. It lives
+ * in the React Query cache and is **cleared on a hard browser refresh** — see
+ * docs/API-MAPPING.md.
+ */
+export interface ArticleOverlay {
+  /** Ids removed by delete — filtered out of every page (multi-delete safe). */
+  deleted: number[];
+  /** Rows created this session — prepended on page 1. */
+  created: ArticleRow[];
+  /** Per-id field patches from edits — merged onto the matching server row. */
+  updated: Record<number, Partial<ArticleRow>>;
+}
+
 /** A page of resolved rows plus the pagination math the UI needs. */
 export interface ArticlesPage {
   rows: ArticleRow[];

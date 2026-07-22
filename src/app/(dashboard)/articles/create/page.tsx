@@ -23,7 +23,7 @@ export default async function CreateArticlePage() {
     <ArticleForm
       tagOptions={tagOptions}
       defaultValues={EMPTY}
-      target={{ mode: "create", userId: user?.id ?? 0 }}
+      target={{ mode: "create", userId: user?.id ?? 0, username: user?.username ?? "you" }}
     />
   );
 }
