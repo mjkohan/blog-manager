@@ -10,6 +10,11 @@ component.
 | --------------------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `GET /posts?limit&skip&select`    | `features/articles/api/posts-api › getPosts` | List page. `limit` fixed = `ARTICLES_PER_PAGE` (10); `skip = (page-1)*limit`. Reads `total`. `select=title,body,tags,userId`. |
 | `GET /users/{id}?select=username` | `getUsername`                                | Author `@username`. Deduped per `userId` within a render via React `cache()` in `getArticles`.                                |
+| `GET /posts/tag-list`             | `getTagList`                                 | Tag names for the form picker. **Sorted alphabetically** (Figma tip).                                                         |
+| `GET /posts?limit=0&select=title` | `getPostIdBySlug`                            | Slug → id: scan all titles, match `slugify(title)`. `null` ⇒ 404. See slug note below.                                        |
+| `GET /posts/{id}`                 | `getPost`                                    | Full post for the edit-form prefill.                                                                                          |
+| `POST /posts/add`                 | `createPost`                                 | **Simulated** create — not persisted (see below).                                                                             |
+| `PUT /posts/{id}`                 | `updatePost`                                 | **Simulated** update — not persisted (see below).                                                                             |
 | `DELETE /posts/{id}`              | `deletePost`                                 | **Simulated** delete — not persisted (see below).                                                                             |
 
 All responses are validated with Zod (`features/articles/types.ts`).
@@ -38,6 +43,22 @@ All responses are validated with Zod (`features/articles/types.ts`).
 | `Excerpt`        | **no field**            | First 20 words of `body` via `excerpt()` (`lib/utils.ts`).                                                                           |
 | `Tags`           | `string[]` on the post  | Joined with `, ` in the cell.                                                                                                        |
 | `slug` (edit)    | **not in the API**      | `slugify(title)` (`lib/utils.ts`); the edit route is `/articles/edit/:slug`.                                                         |
+| `Description`    | **not in post schema**  | Kept in the create/edit form and sent on the (simulated) write; edit prefill starts empty. See create/edit note below.               |
+
+## Article create / edit (writes)
+
+- **Reads (form data) = Server Components.** `/articles/create` fetches the sorted
+  tag list + current user (author `userId`); `/articles/edit/:slug` resolves the
+  slug → post (`getArticleForm`) and prefills. Both pass into the shared client
+  `ArticleForm` (RHF + Zod; only **Title** is required → `Required field`).
+- **Writes (create/update) = React Query mutations** (`useCreateArticle` /
+  `useUpdateArticle`). On success: toast + redirect to the list + `router.refresh()`.
+  Both are **simulated** by DummyJSON and do not persist.
+- **Slug → id:** DummyJSON posts have no slug, so `getPostIdBySlug` scans every
+  post title once (`limit=0&select=title`) and matches `slugify(title)`. Keeps the
+  visible slug `= slugify(title)` (no id in the URL); an unknown slug 404s.
+- **Tags:** `getTagList` sorts alphabetically. The picker lets the user add a new
+  tag (checked by default, uncheckable) on top of the API list.
 
 ## Endpoints in use (auth)
 

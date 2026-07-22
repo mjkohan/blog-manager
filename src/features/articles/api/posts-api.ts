@@ -1,11 +1,20 @@
 import { apiClient } from "@/lib/api-client";
 import { ARTICLES_PER_PAGE } from "@/lib/constants";
+import { slugify } from "@/lib/utils";
 
 import {
   deletePostResponseSchema,
+  mutatedPostSchema,
+  postSchema,
   postsResponseSchema,
+  postTitlesResponseSchema,
+  tagListSchema,
   usernameSchema,
+  type ArticleFormValues,
+  type CreatePostInput,
   type DeletePostResponse,
+  type MutatedPost,
+  type Post,
   type PostsResponse,
 } from "../types";
 
@@ -42,4 +51,45 @@ export async function getUsername(userId: number): Promise<string> {
 export async function deletePost(id: number): Promise<DeletePostResponse> {
   const data = await apiClient.delete<unknown>(`/posts/${id}`);
   return deletePostResponseSchema.parse(data);
+}
+
+/**
+ * `GET /posts/tag-list` → the tag names, **sorted alphabetically** (Figma tip).
+ * Feeds the Tags picker in the create/edit form.
+ */
+export async function getTagList(): Promise<string[]> {
+  const data = await apiClient.get<unknown>("/posts/tag-list");
+  return tagListSchema.parse(data).sort((a, b) => a.localeCompare(b));
+}
+
+/** `GET /posts/{id}` — a single full post (for the edit form prefill). */
+export async function getPost(id: number): Promise<Post> {
+  const data = await apiClient.get<unknown>(`/posts/${id}`);
+  return postSchema.parse(data);
+}
+
+/**
+ * Resolve the edit route's `:slug` → post id. DummyJSON has no slug, so we scan
+ * every post's title once (`limit=0&select=title`) and match `slugify(title)`.
+ * Returns `null` when nothing matches (→ 404). See docs/API-MAPPING.md.
+ */
+export async function getPostIdBySlug(slug: string): Promise<number | null> {
+  const data = await apiClient.get<unknown>("/posts?limit=0&select=title");
+  const { posts } = postTitlesResponseSchema.parse(data);
+  return posts.find((post) => slugify(post.title) === slug)?.id ?? null;
+}
+
+/**
+ * `POST /posts/add` — **simulated** create (not persisted). Returns the echoed
+ * post with a fresh id. The UI treats a 2xx as success. See docs/API-MAPPING.md.
+ */
+export async function createPost(input: CreatePostInput): Promise<MutatedPost> {
+  const data = await apiClient.post<unknown>("/posts/add", input);
+  return mutatedPostSchema.parse(data);
+}
+
+/** `PUT /posts/{id}` — **simulated** update (not persisted). Returns the echoed post. */
+export async function updatePost(id: number, input: ArticleFormValues): Promise<MutatedPost> {
+  const data = await apiClient.put<unknown>(`/posts/${id}`, input);
+  return mutatedPostSchema.parse(data);
 }
