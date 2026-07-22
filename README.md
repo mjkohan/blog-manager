@@ -3,7 +3,7 @@
 A dashboard to manage blog articles (list, create, edit, delete), built pixel-close
 to a Figma design against the [DummyJSON](https://dummyjson.com) mock API.
 
-**Live demo:** _<add your Vercel URL here after deploy>_ · **Sign in:** `emilys` / `emilyspass`
+**Live demo:** <https://blog-manager-nine.vercel.app> · **Sign in:** `emilys` / `emilyspass`
 
 **Next.js 16** (App Router) · **React 19** · **TypeScript** (strict, no `any`) ·
 **Tailwind CSS 4** · **TanStack Query** · **react-hook-form + Zod** ·
@@ -38,9 +38,9 @@ to a Figma design against the [DummyJSON](https://dummyjson.com) mock API.
 | ------------------------------------ | ------------------------------------------- | ----------------------------------------------- |
 | ![Login](docs/screenshots/login.png) | ![List](docs/screenshots/articles-list.png) | ![Mobile](docs/screenshots/articles-mobile.png) |
 
-| Create                                         | Edit + Tags                                | Delete confirm                                 |
-| ---------------------------------------------- | ------------------------------------------ | ---------------------------------------------- |
-| ![Create](docs/screenshots/article-create.png) | ![Edit](docs/screenshots/article-edit.png) | ![Delete](docs/screenshots/delete-confirm.png) |
+| Create                                          | Edit + Tags                                 | Delete confirm                                   |
+| ----------------------------------------------- | ------------------------------------------- | ------------------------------------------------ |
+| ![Create](docs/screenshots/articles-create.png) | ![Edit](docs/screenshots/articles-edit.png) | ![Delete](docs/screenshots/articles-confirm.png) |
 
 ## Getting started
 
