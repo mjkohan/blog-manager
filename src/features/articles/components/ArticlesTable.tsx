@@ -79,26 +79,29 @@ export function ArticlesTable({ rows, onDelete, deletingId }: ArticlesTableProps
           </thead>
           <tbody>
             {rows.map((row) => (
-              <tr key={row.id} className="border-st3 hover:bg-bg2/50 border-b transition-colors">
-                <td className="px-4 py-3 text-center align-middle">
+              <tr
+                key={row.id}
+                className="border-st3 hover:bg-bg2/50 h-12 border-b transition-colors"
+              >
+                <td className="px-4 py-2 text-center align-middle">
                   <IndexBadge value={row.id} />
                 </td>
-                <td className="text-fg1 truncate px-4 py-3 align-middle text-base leading-6 font-semibold tracking-[-0.02em]">
+                <td className="text-fg1 truncate px-4 py-2 align-middle text-base leading-6 font-semibold tracking-[-0.02em]">
                   {row.title}
                 </td>
-                <td className="text-fg1 truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
+                <td className="text-fg1 truncate px-4 py-2 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   @{row.author}
                 </td>
-                <td className="text-fg1 truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
+                <td className="text-fg1 truncate px-4 py-2 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   <TagList tags={row.tags} />
                 </td>
-                <td className="text-fg1 truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
+                <td className="text-fg1 truncate px-4 py-2 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   {row.excerpt}
                 </td>
-                <td className="text-fg1 truncate px-4 py-3 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
+                <td className="text-fg1 truncate px-4 py-2 align-middle text-sm leading-5 font-normal tracking-[-0.02em]">
                   {row.createdAt}
                 </td>
-                <td className="px-4 py-3 align-middle">
+                <td className="px-4 py-2 align-middle">
                   <RowActions row={row} onDelete={onDelete} deleting={deletingId === row.id} />
                 </td>
               </tr>
