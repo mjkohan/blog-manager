@@ -32,10 +32,10 @@ export function Section({
   return (
     <section
       aria-labelledby={headingId}
-      className={cn("bg-bg1 rounded-4 flex flex-col", className)}
+      className={cn("bg-bg1 flex flex-col rounded-md", className)}
       {...props}
     >
-      <SectionHeader label={label} caption={caption} headingId={headingId} className="p-6" />
+      <SectionHeader label={label} caption={caption} headingId={headingId} className="p-9" />
       {hasContent && <div className={cn("p-6", divider && "border-st3 border-t")}>{children}</div>}
     </section>
   );
