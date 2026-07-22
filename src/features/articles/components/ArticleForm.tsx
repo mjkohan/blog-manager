@@ -57,7 +57,7 @@ export function ArticleForm({ tagOptions, defaultValues, target }: ArticleFormPr
       className="mx-auto grid w-full max-w-6xl gap-6 lg:grid-cols-[1fr_360px] lg:items-start"
     >
       <Section label={heading}>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           <Field
             label="Title"
             required
@@ -95,7 +95,7 @@ export function ArticleForm({ tagOptions, defaultValues, target }: ArticleFormPr
         </div>
       </Section>
 
-      <Section label="Tags">
+      <Section>
         <Controller
           control={control}
           name="tags"

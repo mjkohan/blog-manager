@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 import { SectionHeader } from "./SectionHeader";
 
 interface SectionProps extends ComponentProps<"section"> {
-  label: ReactNode;
+  /** Header label. Omit for a headerless card (e.g. the label lives on a Field inside). */
+  label?: ReactNode;
   /** Optional caption below the label. */
   caption?: ReactNode;
   /** Divider between the header and body when there is content. Defaults to true. */
@@ -13,10 +14,12 @@ interface SectionProps extends ComponentProps<"section"> {
 }
 
 /**
- * Section (Figma "Section"). A labelled content region rendered as a white
- * (`neutral-bg1`) card: a SectionHeader (24px padding) over a body slot (24px
- * padding), with a full-width divider between them when there is content. Labels
- * itself for a11y via aria-labelledby. Presentational — drop content as children.
+ * Section (Figma "Section"). A white (`neutral-bg1`) card: an optional
+ * SectionHeader over a body slot (24px padding), with a full-width divider
+ * between them when both a header and content are present. With a `label` it
+ * labels itself for a11y via aria-labelledby; without one it renders a plain
+ * headerless card (the accessible name then comes from content, e.g. a Field
+ * label). Presentational — drop content as children.
  */
 export function Section({
   label,
@@ -27,16 +30,21 @@ export function Section({
   ...props
 }: SectionProps) {
   const headingId = useId();
+  const hasHeader = label != null;
   const hasContent = children != null;
 
   return (
     <section
-      aria-labelledby={headingId}
+      aria-labelledby={hasHeader ? headingId : undefined}
       className={cn("bg-bg1 flex flex-col rounded-md", className)}
       {...props}
     >
-      <SectionHeader label={label} caption={caption} headingId={headingId} className="p-9" />
-      {hasContent && <div className={cn("p-6", divider && "border-st3 border-t")}>{children}</div>}
+      {hasHeader && (
+        <SectionHeader label={label} caption={caption} headingId={headingId} className="p-9" />
+      )}
+      {hasContent && (
+        <div className={cn("p-6", hasHeader && divider && "border-st3 border-t")}>{children}</div>
+      )}
     </section>
   );
 }
