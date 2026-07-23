@@ -1,0 +1,426 @@
+{
+  "nodes": [
+    {
+      "id": "docs_api_mapping",
+      "label": "API Mapping \u2014 DummyJSON \u2194 App",
+      "file_type": "document",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "session_overlay",
+      "label": "Session Overlay (useArticleOverlay / applyOverlay)",
+      "file_type": "rationale",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "httponly_cookie_auth",
+      "label": "httpOnly-Cookie Auth via Server Actions",
+      "file_type": "rationale",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "dummyjson_api",
+      "label": "DummyJSON Mock API",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "get_articles_loader",
+      "label": "getArticles Server Loader",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "posts_api",
+      "label": "features/articles/api/posts-api",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "auth_api",
+      "label": "features/auth/api/auth-api.ts",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "slug_to_id_mapping",
+      "label": "Slug \u2192 id Mapping (getPostIdBySlug)",
+      "file_type": "rationale",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "synthetic_date",
+      "label": "Synthetic Created Date (from post id)",
+      "file_type": "rationale",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "excerpt_derivation",
+      "label": "Excerpt (first 20 words of body)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "author_username_lookup",
+      "label": "Author @username Lookup (getUsername, cache())",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "alphabetical_tag_list",
+      "label": "Alphabetical Tag List (getTagList)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "article_form",
+      "label": "ArticleForm (RHF + Zod)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    },
+    {
+      "id": "session_management",
+      "label": "Session Management (lib/session.ts, actions.ts)",
+      "file_type": "concept",
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null
+    }
+  ],
+  "edges": [
+    {
+      "source": "rsc_reads",
+      "target": "get_articles_loader",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "get_articles_loader",
+      "target": "posts_api",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "posts_api",
+      "target": "dummyjson_api",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "auth_api",
+      "target": "dummyjson_api",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "posts_api",
+      "target": "api_client",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "auth_api",
+      "target": "api_client",
+      "relation": "calls",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "react_query_writes",
+      "target": "session_overlay",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "session_overlay",
+      "target": "simulated_writes",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "session_overlay",
+      "target": "get_articles_loader",
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "httponly_cookie_auth",
+      "target": "session_management",
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "session_management",
+      "target": "auth_api",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "proxy_route_guard",
+      "target": "httponly_cookie_auth",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping",
+      "target": "slug_to_id_mapping",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping",
+      "target": "synthetic_date",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping",
+      "target": "excerpt_derivation",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping",
+      "target": "author_username_lookup",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "docs_api_mapping",
+      "target": "alphabetical_tag_list",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "slug_to_id_mapping",
+      "target": "dummyjson_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "synthetic_date",
+      "target": "dummyjson_api",
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "author_username_lookup",
+      "target": "get_articles_loader",
+      "relation": "implements",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_form",
+      "target": "react_query_writes",
+      "relation": "conceptually_related_to",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_form",
+      "target": "alphabetical_tag_list",
+      "relation": "calls",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "article_form",
+      "target": "slug_to_id_mapping",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    },
+    {
+      "source": "server_side_pagination",
+      "target": "get_articles_loader",
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/API-MAPPING.md",
+      "source_location": null,
+      "weight": 1.0
+    }
+  ],
+  "hyperedges": [
+    {
+      "id": "auth_flow",
+      "label": "httpOnly-Cookie Auth Flow",
+      "nodes": ["httponly_cookie_auth", "session_management", "auth_api", "proxy_route_guard"],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/API-MAPPING.md"
+    },
+    {
+      "id": "design_api_mismatch_handling",
+      "label": "Design \u2194 API Mismatch Handling",
+      "nodes": [
+        "slug_to_id_mapping",
+        "synthetic_date",
+        "excerpt_derivation",
+        "author_username_lookup",
+        "alphabetical_tag_list"
+      ],
+      "relation": "participate_in",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/API-MAPPING.md"
+    }
+  ]
+}
