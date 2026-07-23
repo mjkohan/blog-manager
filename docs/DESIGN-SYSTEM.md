@@ -130,6 +130,19 @@ pnpm build-storybook  # static build -> storybook-static/ (gitignored)
 - The **a11y addon** is enabled — check the Accessibility panel for each story.
 - Author stories per the convention above (one per state).
 
+## Form validation
+
+Forms use **react-hook-form + Zod** (schema colocated in `features/articles/types.ts`).
+
+**Validation trigger — `mode: "onSubmit"` + `reValidateMode: "onChange"`** (see
+`ArticleForm.tsx`). We deliberately do **not** validate on blur/touch. `onTouched`/`onBlur`
+fires validation when the field loses focus — including when focus leaves the Title because
+the user clicked a nav link (e.g. "All articles"). That flashed `Required field` for one
+frame during the route transition, which reads as a bug. With `onSubmit` the error appears
+only on a real submit attempt, then re-checks live as the user types to fix it. The Submit
+button stays disabled on an invalid form via `formState.isValid` (RHF tracks validity
+regardless of the display mode), so an empty Title still can't be submitted.
+
 ## Tests
 
 ```bash

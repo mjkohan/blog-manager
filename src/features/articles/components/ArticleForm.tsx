@@ -43,7 +43,13 @@ export function ArticleForm({ tagOptions, defaultValues, target }: ArticleFormPr
     formState: { errors, isValid },
   } = useForm<ArticleFormValues>({
     resolver: zodResolver(articleFormSchema),
-    mode: "onTouched",
+    // Validate on submit, then re-validate live on change. We intentionally do NOT
+    // validate on blur/touch: blurring the Title also fires when you click a nav
+    // link (e.g. "All articles"), which flashed "Required field" for one frame
+    // during the route transition. `isValid` still gates the Submit button, so an
+    // empty Title can't be submitted.
+    mode: "onSubmit",
+    reValidateMode: "onChange",
     defaultValues,
   });
 
